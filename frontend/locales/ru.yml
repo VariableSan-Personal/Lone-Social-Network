@@ -1,0 +1,5 @@
+button:
+  go: ИДТИ
+intro:
+  hi: Привет, {name}!
+not-found: Не найден

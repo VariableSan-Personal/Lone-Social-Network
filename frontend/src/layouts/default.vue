@@ -1,9 +1,14 @@
+
 <template>
-  <HeaderComponent></HeaderComponent>
+  <div class="wrapper relative pt-12">
+    <HeaderComponent></HeaderComponent>
 
-  <main class="container">
-    <router-view />
-  </main>
+    <DrawerComponent></DrawerComponent>
 
-  <FooterComponent></FooterComponent>
+    <main class="main">
+      <router-view />
+    </main>
+
+    <FooterComponent></FooterComponent>
+  </div>
 </template>

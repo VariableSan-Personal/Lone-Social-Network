@@ -1,9 +1,16 @@
 <script lang="ts" setup>
-import { ref, reactive } from 'vue'
+import { reactive, ref } from 'vue'
+
+const hero = ref<HTMLElement>()
 
 const bgPosition = reactive({
   x: 0,
   y: 0,
+  percentY() {
+    const value = -(this.y * 100 / (hero.value?.offsetHeight || 380))
+
+    return value > 100 ? 100 : value < 0 ? 0 : value
+  },
 })
 const bgDrag = ref(false)
 const initialMouseOffsetY = ref(0)
@@ -12,14 +19,14 @@ const onMouseMove = (event: MouseEvent) => {
   if (bgDrag.value)
     bgPosition.y = -(initialMouseOffsetY.value - event.offsetY)
 }
-
 </script>
 
 <template>
   <div
+    ref="hero"
     class="hero bg--default"
     style="background-image: url('https://i.pinimg.com/originals/d9/e6/5c/d9e65c99f9063d54ea6820f4227aed27.jpg')"
-    :style="`background-position: 0 ${bgPosition.y}px`"
+    :style="`background-position: 0 ${bgPosition.percentY()}%`"
     @mousemove="onMouseMove"
     @mousedown="initialMouseOffsetY = $event.offsetY - bgPosition.y; bgDrag = true"
     @mouseup="bgDrag = false"

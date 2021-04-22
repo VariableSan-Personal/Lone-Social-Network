@@ -3,7 +3,7 @@ import { drawer, links } from '~/logic'
 </script>
 
 <template>
-  <header class="header fixed top-0 left-0 w-full h-auto py-2 bg-cool-gray-700">
+  <header class="header fixed top-0 left-0 z-50 w-full h-auto py-2 bg-cool-gray-700">
     <div class="container">
       <div class="flex flex-wrap">
         <div class="header__logo">
@@ -95,7 +95,9 @@ import { drawer, links } from '~/logic'
     &:hover,
     &:focus {
       @apply text-warm-gray-400;
+    }
 
+    &:hover {
       &:after {
         @apply opacity-100;
       }

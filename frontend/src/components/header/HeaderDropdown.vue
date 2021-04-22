@@ -44,7 +44,7 @@ import { user, logout } from '~/logic'
 <style lang="postcss">
 .header-dropdown {
   &__item {
-    @apply flex justify-between w-full px-4 py-2 text-sm leading-5 text-left;
+    @apply flex justify-between items-center w-full px-4 py-2 text-sm leading-5 text-left;
   }
 }
 </style>

@@ -33,9 +33,11 @@ html.dark {
 }
 
 .btn {
-  @apply p-2 rounded inline-flex
-    border-2 border-cool-gray-500 cursor-pointer transition-color duration
-    hover:bg-cool-gray-500
+  @apply p-2 rounded inline-flex cursor-pointer transition duration focus:outline-none;
+}
+
+.btn--custom {
+  @apply hover:bg-cool-gray-500
     disabled:cursor-default disabled:bg-gray-600 disabled:opacity-50;
 }
 

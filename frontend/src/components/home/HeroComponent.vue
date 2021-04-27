@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
-
-const mockFileSrc = 'https://vignette.wikia.nocookie.net/overlordmaruyama/images/2/26/Pleiades.jpg/revision/latest/scale-to-width-down/2000?cb=20150326122404'
+import mockFileSrc from '~/../public/mock-image.jpg'
 
 const hero = ref<HTMLElement>()
 const fileInput = ref<HTMLElement>()
@@ -56,7 +55,7 @@ const onFileChange = (event: Event) => {
       reader.readAsDataURL(file as Blob)
 
       reader.onload = (progresEvent: ProgressEvent<FileReader>) => {
-        lastImageSrc.value = imageSrc.value
+        saveLastValue()
         imageSrc.value = progresEvent.target?.result as string
       }
     }
@@ -67,7 +66,6 @@ const onCancel = () => {
   settingMode.value = false
 
   const { x, y } = lastBgPosition
-
   bgPosition.x = x
   bgPosition.y = y
 
@@ -76,11 +74,14 @@ const onCancel = () => {
 
 const onAdjust = () => {
   settingMode.value = true
+  saveLastValue()
+}
 
+function saveLastValue() {
   const { x, y } = bgPosition
-
   lastBgPosition.x = x
   lastBgPosition.y = y
+  lastImageSrc.value = imageSrc.value
 }
 </script>
 

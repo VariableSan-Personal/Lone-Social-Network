@@ -16,6 +16,10 @@ html.dark {
   background: #121212;
 }
 
+img {
+  @apply max-w-full h-auto;
+}
+
 #nprogress {
   pointer-events: none;
 }

@@ -7,7 +7,7 @@ import { user, logout } from '~/logic'
     <template #trigger="{ activator }">
       <div class="flex items-center">
         <img
-          src="https://myanimelist.net/images/characters/3/290840.jpg"
+          :src="user?.avatar"
           class="inline-block w-8 h-8 mr-2 rounded-full"
         />
         <div class="transition duration transform" :class="{ 'rotate-180': activator }">

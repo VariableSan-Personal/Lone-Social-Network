@@ -17,11 +17,23 @@ export type TUserSettings = {
   emailPreference: TEmailPreference
 }
 
+export type TCoverPhotoPosition = {
+  x: number
+  y: number
+}
+
+export type TCoverPhoto = {
+  url: string
+  position: TCoverPhotoPosition
+}
+
 export type TUser = {
   login: string
   password: string
   firstName: string
   lastName: string
   email: string
+  avatar: string
+  coverPhoto: TCoverPhoto
   settings: TUserSettings
 }

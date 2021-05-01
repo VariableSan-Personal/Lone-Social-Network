@@ -1,17 +1,17 @@
 <script lang="ts" setup>
 import { reactive, ref } from 'vue'
-import mockFileSrc from '~/../public/mock-image.jpg'
+import { imageLoader, user } from '~/logic'
 
 const hero = ref<HTMLElement>()
 const fileInput = ref<HTMLElement>()
 
 const settingMode = ref(false)
-const imageSrc = ref(mockFileSrc)
-const lastImageSrc = ref('')
+const imageSrc = ref(user.value?.coverPhoto.url)
+const lastImageSrc = ref<string | undefined>()
 
 const bgPosition = reactive({
   x: 0,
-  y: 0,
+  y: -(user.value?.coverPhoto.position.y || 0),
   percentY() {
     const value = -(this.y * 100 / (hero.value?.offsetHeight || 380))
 
@@ -37,29 +37,10 @@ const onMouseDown = (event: MouseEvent) => {
   }
 }
 
-const onFileChange = (event: Event) => {
-  const el = event.currentTarget as HTMLInputElement
-
-  const fileList: FileList | null = el.files
-
-  if (fileList) {
-    const file = fileList.item(0)
-    const fileExt = file?.name.slice(file.name.lastIndexOf('.'))
-
-    const allowedExtensions = ['png', 'jpeg', 'jpg']
-
-    if (allowedExtensions.includes(fileExt?.slice(1) || '')) {
-      settingMode.value = true
-
-      const reader = new FileReader()
-      reader.readAsDataURL(file as Blob)
-
-      reader.onload = (progresEvent: ProgressEvent<FileReader>) => {
-        saveLastValue()
-        imageSrc.value = progresEvent.target?.result as string
-      }
-    }
-  }
+const onFileChange = (progressEvent: ProgressEvent<FileReader>) => {
+  settingMode.value = true
+  saveLastValue()
+  imageSrc.value = progressEvent.target?.result as string
 }
 
 const onCancel = () => {
@@ -139,7 +120,13 @@ function saveLastValue() {
     </div>
   </div>
 
-  <input ref="fileInput" class="hidden" type="file" accept="image/*" @change="onFileChange" />
+  <input
+    ref="fileInput"
+    class="hidden"
+    type="file"
+    accept="image/*"
+    @change="imageLoader($event, onFileChange)"
+  />
 </template>
 
 <style lang="postcss">

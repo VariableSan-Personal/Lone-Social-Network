@@ -1,3 +1,14 @@
+<script setup lang='ts'>
+import { onMounted } from 'vue'
+import { home, getHomeData } from '~/logic'
+
+onMounted(async() => {
+  const { data: { data } } = await getHomeData()
+
+  home.value = data
+})
+</script>
+
 <template>
   <HeroComponent></HeroComponent>
 

@@ -1,6 +1,6 @@
 
 <template>
-  <div class="wrapper relative pt-11 sm:pt-12">
+  <div class="wrapper relative pt-11 sm:pt-14">
     <HeaderComponent></HeaderComponent>
 
     <DrawerComponent></DrawerComponent>

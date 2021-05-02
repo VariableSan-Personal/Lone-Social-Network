@@ -7,8 +7,10 @@
     "preview-https": "serve dist"
   },
   "dependencies": {
+    "@iconify/iconify": "^1.0.7",
     "@vueuse/core": "^4.6.3",
     "@vueuse/head": "^0.5.1",
+    "axios": "^0.21.1",
     "nprogress": "^0.2.0",
     "prism-theme-vars": "^0.2.2",
     "vue": "^3.0.10",
@@ -17,7 +19,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.6.2",
-    "@iconify/json": "^1.1.323",
+    "@iconify/json": "^1.1.337",
     "@intlify/vite-plugin-vue-i18n": "^2.0.4",
     "@types/nprogress": "^0.2.0",
     "@typescript-eslint/eslint-plugin": "^4.20.0",
@@ -39,6 +41,7 @@
     "vite-plugin-icons": "^0.4.0",
     "vite-plugin-md": "^0.6.3",
     "vite-plugin-pages": "^0.9.1",
+    "vite-plugin-purge-icons": "^0.7.0",
     "vite-plugin-pwa": "^0.6.4",
     "vite-plugin-vue-layouts": "^0.2.2",
     "vite-plugin-windicss": "^0.11.3",

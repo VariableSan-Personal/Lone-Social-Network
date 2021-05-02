@@ -1,17 +1,17 @@
 <script lang="ts" setup>
-import { reactive, ref } from 'vue'
-import { imageLoader, user } from '~/logic'
+import { reactive, ref, watch } from 'vue'
+import { home, imageLoader, URL } from '~/logic'
 
 const hero = ref<HTMLElement>()
 const fileInput = ref<HTMLElement>()
 
 const settingMode = ref(false)
-const imageSrc = ref(user.value?.coverPhoto.url)
-const lastImageSrc = ref<string | undefined>()
+const imageSrc = ref('')
+const lastImageSrc = ref('')
 
 const bgPosition = reactive({
   x: 0,
-  y: -(user.value?.coverPhoto.position.y || 0),
+  y: 0,
   percentY() {
     const value = -(this.y * 100 / (hero.value?.offsetHeight || 380))
 
@@ -24,6 +24,11 @@ const lastBgPosition = {
 }
 const bgDrag = ref(false)
 const initialMouseOffsetY = ref(0)
+
+watch(home, () => {
+  imageSrc.value = URL.assets(home.value?.cover_image.id || '')
+  bgPosition.y = -(home.value?.y_axis || 0)
+})
 
 const onMouseMove = (event: MouseEvent) => {
   if (bgDrag.value)
@@ -77,6 +82,10 @@ function saveLastValue() {
     @mouseup="bgDrag = false"
     @mouseleave="bgDrag = false"
   >
+    <div v-if="!imageSrc" class="absolute top-0 left-0 flex justify-center items-center w-full h-full">
+      <whh:loadingalt class="text-5xl animate-spin"></whh:loadingalt>
+    </div>
+
     <div class="container absolute inset-0 top-1/8">
       <div class="flex justify-end">
         <DropdownComponent :title="false">

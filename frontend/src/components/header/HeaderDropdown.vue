@@ -1,5 +1,12 @@
 <script setup lang='ts'>
-import { user, logout } from '~/logic'
+import { ref, watch } from '@vue/runtime-core'
+import { home, logout, URL } from '~/logic'
+
+const imageSrc = ref('')
+
+watch(home, () => {
+  imageSrc.value = URL.assets(home.value?.avatar.id || '')
+})
 </script>
 
 <template>
@@ -7,8 +14,8 @@ import { user, logout } from '~/logic'
     <template #trigger="{ activator }">
       <div class="flex items-center">
         <img
-          :src="user?.avatar"
-          class="inline-block w-8 h-8 mr-2 rounded-full"
+          :src="imageSrc"
+          class="inline-block w-10 h-10 mr-2 rounded-full"
         />
         <div class="transition duration transform" :class="{ 'rotate-180': activator }">
           <mdi:menu-down></mdi:menu-down>
@@ -22,7 +29,7 @@ import { user, logout } from '~/logic'
           Signed in as
         </p>
         <p class="text-sm font-medium leading-5 truncate">
-          {{ user?.email }}
+          {{ home?.admin_name }}
         </p>
       </div>
     </template>

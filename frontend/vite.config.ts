@@ -2,6 +2,7 @@ import path from 'path'
 import VueI18n from '@intlify/vite-plugin-vue-i18n'
 import Vue from '@vitejs/plugin-vue'
 import Prism from 'markdown-it-prism'
+import PurgeIcons from 'vite-plugin-purge-icons'
 import { defineConfig } from 'vite'
 import ViteComponents from 'vite-plugin-components'
 import ViteIcons, { ViteIconsResolver } from 'vite-plugin-icons'
@@ -33,6 +34,10 @@ export default defineConfig({
 
     // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
     Layouts(),
+
+    PurgeIcons({
+      /* PurgeIcons Options */
+    }),
 
     // https://github.com/antfu/vite-plugin-md
     Markdown({

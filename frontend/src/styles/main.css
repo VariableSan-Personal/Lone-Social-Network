@@ -61,5 +61,5 @@ img {
 }
 
 .bg--default {
-  @apply bg-cover bg-center bg-no-repeat;
+  @apply bg-cover bg-center bg-no-repeat bg-cool-gray-600;
 }

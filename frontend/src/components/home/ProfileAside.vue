@@ -1,6 +1,12 @@
 <script setup lang='ts'>
-import { ref } from 'vue'
-import { imageLoader, user } from '~/logic'
+import { ref, watch } from 'vue'
+import { imageLoader, URL, home } from '~/logic'
+
+const imageSrc = ref('')
+
+watch(home, () => {
+  imageSrc.value = URL.assets(home.value?.avatar.id || '')
+})
 
 const fileInput = ref<HTMLElement>()
 
@@ -16,26 +22,24 @@ const onFileChange = (progressEvent: ProgressEvent<FileReader>) => {
         class="relative w-52 h-52 mx-auto -mb-28 rounded-full border-5 border-cool-gray-700 transform -translate-y-28 overflow-hidden group"
       >
         <div
-          class="absolute top-0 left-0 flex justify-center items-center w-full h-full bg-black opacity-0 cursor-pointer transition duration group-hover:opacity-60"
+          v-if="imageSrc"
+          class="absolute top-0 left-0 flex justify-center items-center w-full h-full bg-black opacity-0 cursor-pointer transition duration group-hover:opacity-60 bg--default"
           @click="fileInput?.click()"
         >
           <mdi:camera class="text-3xl"></mdi:camera>
         </div>
 
-        <img :src="user?.avatar" />
+        <div v-else class="absolute top-0 left-0 flex justify-center items-center w-full h-full">
+          <whh:loadingalt class="text-2xl animate-spin"></whh:loadingalt>
+        </div>
+
+        <img :src="imageSrc" />
       </div>
 
       <input ref="fileInput" class="hidden" type="file" @change="imageLoader($event, onFileChange)" />
 
-      <div class="flex px-2 text-center py-8">
-        <div class="w-1/2 text-xl">
-          <h4>Followers</h4>
-          <p>150</p>
-        </div>
-        <div class="w-1/2 text-xl">
-          <h4>Following</h4>
-          <p>150</p>
-        </div>
+      <div class="px-2 py-4 text-center text-lg">
+        <p>{{ home?.admin_name }}</p>
       </div>
     </div>
 

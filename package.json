@@ -1,0 +1,27 @@
+{
+  "name": "lone-social-network",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "package:install": "npm i -g npx pnpm",
+    "frontend": "cd ./frontend && pnpm dev",
+    "dashboard": "cd ./dashboard && npx directus start",
+    "dev": "concurrently \"npm run frontend\" \"npm run dashboard\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JudgementHC/Lone-Social-Network.git"
+  },
+  "author": "Nursultan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JudgementHC/Lone-Social-Network/issues"
+  },
+  "homepage": "https://github.com/JudgementHC/Lone-Social-Network#readme",
+  "devDependencies": {
+    "concurrently": "^6.1.0"
+  },
+  "dependencies": {
+    "node-cmd": "^4.0.0"
+  }
+}

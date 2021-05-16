@@ -4,8 +4,8 @@
   "description": "",
   "scripts": {
     "package:install": "npm i -g npx pnpm",
-    "frontend": "cd ./frontend && pnpm dev",
-    "dashboard": "cd ./dashboard && npx directus start",
+    "frontend": "cd frontend && pnpm dev",
+    "dashboard": "cd dashboard && npx directus start",
     "dev": "concurrently \"npm run frontend\" \"npm run dashboard\""
   },
   "repository": {

@@ -1,11 +1,11 @@
 <script setup lang='ts'>
 import { ref, watch } from 'vue'
-import { imageLoader, URL, home } from '~/logic'
+import { user, imageLoader, URL, home } from '~/logic'
 
 const imageSrc = ref('')
 
 watch(home, () => {
-  imageSrc.value = URL.assets(home.value?.avatar.id || '')
+  imageSrc.value = URL.assets(home.value?.admin_info.avatar.id || '')
 })
 
 const fileInput = ref<HTMLElement>()
@@ -22,16 +22,14 @@ const onFileChange = (progressEvent: ProgressEvent<FileReader>) => {
         class="relative w-52 h-52 mx-auto -mb-28 rounded-full border-5 border-cool-gray-700 transform -translate-y-28 overflow-hidden group"
       >
         <div
-          v-if="imageSrc"
+          v-if="imageSrc && user?.role.admin_access"
           class="absolute top-0 left-0 flex justify-center items-center w-full h-full bg-black opacity-0 cursor-pointer transition duration group-hover:opacity-60 bg--default"
           @click="fileInput?.click()"
         >
           <mdi:camera class="text-3xl"></mdi:camera>
         </div>
 
-        <div v-else class="absolute top-0 left-0 flex justify-center items-center w-full h-full">
-          <whh:loadingalt class="text-2xl animate-spin"></whh:loadingalt>
-        </div>
+        <ImageLoader v-if="!imageSrc" size="text-2xl"></ImageLoader>
 
         <img :src="imageSrc" />
       </div>
@@ -39,7 +37,7 @@ const onFileChange = (progressEvent: ProgressEvent<FileReader>) => {
       <input ref="fileInput" class="hidden" type="file" @change="imageLoader($event, onFileChange)" />
 
       <div class="px-2 py-4 text-center text-lg">
-        <p>{{ home?.admin_name }}</p>
+        <p>{{ home?.admin_info.first_name }} {{ home?.admin_info.last_name }}</p>
       </div>
     </div>
 

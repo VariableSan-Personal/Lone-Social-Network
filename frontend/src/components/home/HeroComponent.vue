@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { reactive, ref, watch } from 'vue'
-import { home, imageLoader, URL } from '~/logic'
+import { user, home, imageLoader, URL } from '~/logic'
 
 const hero = ref<HTMLElement>()
 const fileInput = ref<HTMLElement>()
@@ -82,11 +82,9 @@ function saveLastValue() {
     @mouseup="bgDrag = false"
     @mouseleave="bgDrag = false"
   >
-    <div v-if="!imageSrc" class="absolute top-0 left-0 flex justify-center items-center w-full h-full">
-      <whh:loadingalt class="text-5xl animate-spin"></whh:loadingalt>
-    </div>
+    <ImageLoader v-if="!imageSrc" size="text-5xl"></ImageLoader>
 
-    <div class="container absolute inset-0 top-1/8">
+    <div v-if="user?.role.admin_access" class="container absolute inset-0 top-1/8">
       <div class="flex justify-end">
         <DropdownComponent :title="false">
           <template v-if="!settingMode" #trigger>
@@ -144,7 +142,7 @@ function saveLastValue() {
   padding: 15% 0;
 
   &__btn {
-    @apply uppercase bg-opacity-500;
+    @apply uppercase bg-opacity-50;
 
     &:not(:last-child) {
       @apply mr-4;

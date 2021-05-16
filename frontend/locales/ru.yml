@@ -1,5 +1,7 @@
-button:
-  go: ИДТИ
+header:
+  account-settings: Настройки аккаунта
+  logout: Выйти
+  signed-in: Вы вошли как
 intro:
   hi: Привет, {name}!
-not-found: Не найден
+not-found: Не найдено

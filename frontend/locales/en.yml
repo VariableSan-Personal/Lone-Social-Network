@@ -1,5 +1,7 @@
-button:
-  go: GO
 intro:
   hi: Hi, {name}!
 not-found: Not found
+header:
+  account-settings: Account settings
+  logout: Logout
+  signed-in: Signed in as

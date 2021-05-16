@@ -8,12 +8,12 @@ body,
   padding: 0;
 }
 
-body {
-  @apply text-gray-700 dark:text-gray-200;
+html {
+  @apply text-gray-700;
 }
 
 html.dark {
-  background: #121212;
+  @apply text-gray-200 bg-black;
 }
 
 img {
@@ -37,7 +37,15 @@ img {
 }
 
 .btn {
-  @apply p-2 rounded inline-flex cursor-pointer transition duration focus:outline-none;
+  @apply p-2 rounded inline-flex cursor-pointer transition duration;
+}
+
+.btn:hover {
+  @apply text-warm-gray-400;
+}
+
+.btn:focus {
+  @apply outline-none;
 }
 
 .btn--custom {
@@ -57,7 +65,11 @@ img {
 }
 
 .link--default {
-  @apply p-2 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50;
+  @apply p-2;
+}
+
+.link--default:focus {
+  @apply outline-none ring-2 ring-blue-400 ring-opacity-50;
 }
 
 .bg--default {

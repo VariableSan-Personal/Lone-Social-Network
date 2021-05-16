@@ -1,39 +1,67 @@
-export enum EEmailKeys {
-  MESSAGES = 'messages',
-  SOME = 'some',
+export type TToken = {
+  access_token: string
+  expires: number
+  refresh_token: string
 }
 
-export enum ETheme {
-  DARK = 'dark',
-  LIGHT = 'light'
+export type Metadata = {
 }
 
-export type TEmailPreference = {
-  [key in EEmailKeys]: Boolean
+export type Avatar = {
+  charset: null
+  description: null
+  duration: null
+  embed: null
+  filename_disk: string
+  filename_download: string
+  filesize: number
+  folder: null
+  height: number
+  id: string
+  location: null
+  metadata: Metadata
+  modified_by: null
+  modified_on: string
+  storage: string
+  tags: null
+  title: string
+  type: string
+  uploaded_by: string
+  uploaded_on: string
+  width: number
 }
 
-export type TUserSettings = {
-  theme: ETheme
-  emailPreference: TEmailPreference
-}
-
-export type TCoverPhotoPosition = {
-  x: number
-  y: number
-}
-
-export type TCoverPhoto = {
-  url: string
-  position: TCoverPhotoPosition
+export type Role = {
+  admin_access: boolean
+  app_access: boolean
+  collection_list: null
+  description: string
+  enforce_tfa: boolean
+  icon: string
+  id: string
+  ip_access: null
+  module_list: null
+  name: string
+  users: string[]
 }
 
 export type TUser = {
-  login: string
-  password: string
-  firstName: string
-  lastName: string
+  description: null
   email: string
-  avatar: string
-  coverPhoto: TCoverPhoto
-  settings: TUserSettings
+  first_name: string
+  id: string
+  language: string
+  last_access: string
+  last_name: string
+  last_page: string
+  location: string
+  password: string
+  status: string
+  tags: null
+  tfa_secret: null
+  theme: string
+  title: string
+  token: null
+  avatar: Avatar
+  role: Role
 }

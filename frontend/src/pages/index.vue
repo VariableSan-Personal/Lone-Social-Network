@@ -3,9 +3,9 @@ import { onMounted } from 'vue'
 import { home, getHomeData } from '~/logic'
 
 onMounted(async() => {
-  const { data: { data } } = await getHomeData()
+  const response = await getHomeData()
 
-  home.value = data
+  home.value = response.data.data
 })
 </script>
 

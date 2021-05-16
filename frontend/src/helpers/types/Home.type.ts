@@ -1,3 +1,5 @@
+import { TUser } from './User.type'
+
 export type TImage = {
   id: string
 }
@@ -11,18 +13,11 @@ export type TSocialLink = {
   icon: string
 }
 
-export type TData = {
-  admin_name: string
-  avatar: TImage
-  cover_image: TImage
+export type THome = {
   id: number
+  admin_info: TUser
+  cover_image: TImage
   x_axis: number
   y_axis: number
   social_links: TSocialLink[]
-}
-
-export type THome = {
-  data: {
-    data: TData
-  }
 }

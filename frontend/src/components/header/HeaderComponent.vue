@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { drawer, links } from '~/logic'
+import { isDark, user, drawer, links, toggleDark } from '~/logic'
 </script>
 
 <template>
@@ -34,7 +34,23 @@ import { drawer, links } from '~/logic'
         </nav>
 
         <div class="header__user">
-          <HeaderDropdown class="hidden sm:block"></HeaderDropdown>
+          <HeaderDropdown v-if="user" class="hidden sm:block"></HeaderDropdown>
+
+          <div v-else class="flex items-center">
+            <button class="btn">
+              Sign up
+            </button>
+            <button class="btn">
+              Login
+            </button>
+
+            <button class="btn" @click="toggleDark">
+              <span>
+                <carbon-moon v-if="isDark" />
+                <carbon-sun v-else />
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -46,46 +62,27 @@ import { drawer, links } from '~/logic'
   &__logo,
   &__nav,
   &__user {
-    @apply flex items-center w-1/3;
+    @apply items-center;
   }
 
-  &__logo,
-  &__user {
+  &__logo {
+    @apply flex w-full;
     @screen sm {
       @apply w-1/3;
     }
   }
 
-  &__logo {
-    @apply w-3/5;
-  }
-
   &__user {
-    @apply w-2/5;
-  }
-
-  &__nav {
-    @apply hidden;
-
+    @apply hidden justify-end w-1/3;
     @screen sm {
       @apply flex;
     }
   }
 
-  &__user {
-    @apply justify-end;
-  }
-
-  &__network {
-    @apply flex items-center;
-
-    &:not(:last-child) {
-      @apply mr-2;
-    }
-
-    &:hover,
-    &:focus {
-      @apply text-blue-600 outline-none;
+  &__nav {
+    @apply hidden w-1/3;
+    @screen sm {
+      @apply flex;
     }
   }
 

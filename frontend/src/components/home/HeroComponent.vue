@@ -139,7 +139,10 @@ function saveLastValue() {
 <style lang="postcss">
 .hero {
   @apply relative;
-  padding: 15% 0;
+  padding: 25% 0;
+  @screen sm {
+    padding: 15% 0;
+  }
 
   &__btn {
     @apply uppercase bg-opacity-50;

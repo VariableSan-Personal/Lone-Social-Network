@@ -14,9 +14,9 @@ onMounted(async() => {
 
   <div class="container">
     <div class="flex flex-wrap items-start">
-      <ProfileAside class="w-1/4"></ProfileAside>
+      <ProfileAside class="w-9/12 mx-auto lg:w-1/4"></ProfileAside>
 
-      <div class="w-3/4 pl-4 some">
+      <div class="w-full lg:w-3/4 pl-4 some">
         <h1>some_text</h1>
       </div>
     </div>

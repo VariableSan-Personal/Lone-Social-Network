@@ -9,11 +9,12 @@ body,
 }
 
 html {
-  @apply text-gray-700;
+  @apply text-dark-300;
 }
 
 html.dark {
-  @apply text-gray-200 bg-black;
+  @apply text-gray-200;
+  background-color: #212121;
 }
 
 img {

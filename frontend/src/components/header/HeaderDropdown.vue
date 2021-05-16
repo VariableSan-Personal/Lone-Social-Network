@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import { ref } from '@vue/runtime-core'
 import { useI18n } from 'vue-i18n'
-import { logout, user } from '~/logic'
+import { logout } from '~/logic'
 
 const imageSrc = ref('')
 
@@ -13,16 +13,7 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <div v-if="!user">
-    <button class="btn">
-      Sign up
-    </button>
-    <button class="btn">
-      Login
-    </button>
-  </div>
-
-  <DropdownComponent v-else trigger-class="block h-full">
+  <DropdownComponent trigger-class="block h-full">
     <template #trigger="{ activator }">
       <div class="flex items-center">
         <div class="bg--default relative w-10 h-10 rounded-full overflow-hidden">

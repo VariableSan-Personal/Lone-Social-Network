@@ -1,22 +1,26 @@
 <script setup lang='ts'>
-import { drawer, links, user } from '~/logic'
+import { ref, watch } from 'vue'
+import { drawer, links, user, URL } from '~/logic'
+
+const imageSrc = ref('')
+
+watch(user, () => {
+  imageSrc.value = URL.assets(user.value?.avatar.id || '')
+})
 </script>
 
 <template>
   <nav
     :class="drawer ? 'translate-x-0' : '-translate-x-full'"
-    class="fixed z-20 left-0 top-0 w-7/12 sm:w-64 min-h-full bg-cool-gray-800 overflow-scroll transition-all duration-300 ease-in-out transform"
+    class="fixed z-20 left-0 top-0 w-7/12 sm:w-64 min-h-full py-12 bg-cool-gray-800 overflow-scroll transition-all duration-300 ease-in-out transform"
   >
-    <div class="relative flex flex-wrap justify-between mt-8 pb-6 px-4 border-b-1">
+    <div v-if="user" class="relative flex flex-wrap justify-between mt-8 pb-6 px-4 border-b-1">
       <div class="mr-4 mb-4">
-        <img
-          src="https://myanimelist.net/images/characters/3/290840.jpg"
-          class="mx-auto w-20 h-20 rounded-full"
-        />
+        <img :src="imageSrc" class="mx-auto w-20 h-20 rounded-full" />
       </div>
 
       <div class="flex justify-between flex-grow items-center w-1/2">
-        <span class="font-semibold text-white">{{ user?.firstName }} {{ user?.lastName }}</span>
+        <span class="font-semibold text-white">{{ user?.first_name }} {{ user?.last_name }}</span>
 
         <router-link class="focus:outline-none" :to="{ name: 'user-settings' }">
           <tabler:settings></tabler:settings>
@@ -40,7 +44,6 @@ import { drawer, links, user } from '~/logic'
   </nav>
 
   <transition
-    enter-class="opacity-0"
     enter-active-class="ease-out transition-medium"
     enter-to-class="opacity-100"
     leave-class="opacity-100"

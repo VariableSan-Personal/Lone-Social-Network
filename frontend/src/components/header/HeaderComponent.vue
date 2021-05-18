@@ -1,9 +1,14 @@
 <script setup lang='ts'>
+import { ref } from 'vue'
 import { isDark, user, drawer, links, toggleDark } from '~/logic'
+
+const loginWindow = ref(false)
 </script>
 
 <template>
-  <header class="header fixed top-0 left-0 z-50 w-full h-auto py-2 bg-cool-gray-700">
+  <header
+    class="header fixed top-0 left-0 z-50 w-full h-auto py-2 bg-cool-gray-50 dark:bg-cool-gray-700 shadow-2xl"
+  >
     <div class="container">
       <div class="flex flex-wrap">
         <div class="header__logo">
@@ -40,7 +45,7 @@ import { isDark, user, drawer, links, toggleDark } from '~/logic'
             <button class="btn">
               Sign up
             </button>
-            <button class="btn">
+            <button class="btn" @click="loginWindow = true">
               Login
             </button>
 
@@ -52,6 +57,8 @@ import { isDark, user, drawer, links, toggleDark } from '~/logic'
             </button>
           </div>
         </div>
+
+        <LoginWindow v-model:showWindow="loginWindow"></LoginWindow>
       </div>
     </div>
   </header>

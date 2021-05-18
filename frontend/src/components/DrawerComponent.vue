@@ -44,17 +44,14 @@ watch(user, () => {
   </nav>
 
   <transition
+    enter-from-class="opacity-0"
     enter-active-class="ease-out transition-medium"
     enter-to-class="opacity-100"
     leave-class="opacity-100"
     leave-active-class="ease-out transition-medium"
     leave-to-class="opacity-0"
   >
-    <div
-      v-show="drawer"
-      class="fixed inset-0 z-10 transition-opacity cursor-pointer"
-      @keydown.esc="drawer = false"
-    >
+    <div v-show="drawer" class="fixed inset-0 z-10 transition-opacity cursor-pointer">
       <div class="absolute inset-0 bg-black opacity-50" tabindex="0" @click="drawer = false" />
     </div>
   </transition>

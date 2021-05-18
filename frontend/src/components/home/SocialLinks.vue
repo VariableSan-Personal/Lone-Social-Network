@@ -3,7 +3,7 @@ import { home } from '~/logic'
 </script>
 
 <template>
-  <ul class="social-links__divider">
+  <ul class="social-links__divider divide-gray-300 dark:divide-gray-100">
     <li>
       <a
         class="flex items-center p-3 group"
@@ -31,7 +31,7 @@ import { home } from '~/logic'
 <style lang="postcss">
 .social-links {
   &__divider {
-    @apply divide-y divide-gray-100;
+    @apply divide-y;
   }
 }
 </style>

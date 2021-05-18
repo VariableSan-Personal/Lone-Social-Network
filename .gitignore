@@ -35,6 +35,7 @@ lerna-debug.log*
 
 # directus
 dashboard/uploads/
+directus_keys.txt
 
 # others
 .env

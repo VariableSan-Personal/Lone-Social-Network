@@ -1,6 +1,9 @@
 <script setup lang='ts'>
 import { ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { drawer, links, user, URL } from '~/logic'
+
+const { t } = useI18n()
 
 const imageSrc = ref('')
 
@@ -12,7 +15,7 @@ watch(user, () => {
 <template>
   <nav
     :class="drawer ? 'translate-x-0' : '-translate-x-full'"
-    class="fixed z-20 left-0 top-0 w-7/12 sm:w-64 min-h-full py-12 bg-cool-gray-800 overflow-scroll transition-all duration-300 ease-in-out transform"
+    class="fixed z-20 left-0 top-0 w-7/12 sm:w-64 min-h-full py-12 bg-cool-gray-50 dark:bg-cool-gray-800 overflow-scroll transition-all duration-300 ease-in-out transform"
   >
     <div v-if="user" class="relative flex flex-wrap justify-between mt-8 pb-6 px-4 border-b-1">
       <div class="mr-4 mb-4">
@@ -33,11 +36,12 @@ watch(user, () => {
         <router-link
           v-for="(link, index) in links"
           :key="index"
-          class="mb-2 px-4 py-4 transition-color duration text-gray-100 block border-gray-300 hover:text-black hover:bg-gray-300 hover:font-bold rounded rounded-lg"
+          tabindex="-1"
+          class="block mb-2 px-4 py-4 transition-colors duration dark:text-gray-100 hover:bg-gray-200 hover:text-black dark:hover:bg-gray-300 hover:font-bold rounded rounded-lg"
           tag="li"
           :to="link.href"
         >
-          {{ link.title }}
+          {{ t(link.title) }}
         </router-link>
       </ul>
     </div>

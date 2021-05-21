@@ -1,8 +1,17 @@
 <script setup lang='ts'>
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { isDark, user, drawer, links, toggleDark } from '~/logic'
 
+const { t, availableLocales, locale } = useI18n()
+
 const loginWindow = ref(false)
+
+const currentTab = ref(0)
+
+const toggleLocale = () => {
+  locale.value = availableLocales.find(el => el !== locale.value) || 'en'
+}
 </script>
 
 <template>
@@ -18,7 +27,7 @@ const loginWindow = ref(false)
 
           <router-link
             to="/"
-            class="font-bold text-xl font-serif sm:text-2xl outline-none duration-150 focus:text-warm-gray-400 hover:text-warm-gray-400"
+            class="link--default font-bold text-xl font-serif sm:text-2xl"
           >
             Lone social
           </router-link>
@@ -28,11 +37,11 @@ const loginWindow = ref(false)
           <ul class="flex">
             <li v-for="(link, index) in links" :key="index" class="not-last:mr-4">
               <router-link
-                class="header__link"
+                class="link--default header__link"
                 exact-active-class="after:opacity-100"
                 :to="link.href"
               >
-                {{ link.title }}
+                {{ t(link.title) }}
               </router-link>
             </li>
           </ul>
@@ -42,11 +51,11 @@ const loginWindow = ref(false)
           <HeaderDropdown v-if="user" class="hidden sm:block"></HeaderDropdown>
 
           <div v-else class="flex items-center">
-            <button class="btn">
-              Sign up
+            <button class="btn" @click="loginWindow = true; currentTab = 1">
+              {{ t('login.sign-up') }}
             </button>
-            <button class="btn" @click="loginWindow = true">
-              Login
+            <button class="btn" @click="loginWindow = true; currentTab = 0">
+              {{ t('login.login') }}
             </button>
 
             <button class="btn" @click="toggleDark">
@@ -55,10 +64,16 @@ const loginWindow = ref(false)
                 <carbon-sun v-else />
               </span>
             </button>
+
+            <button class="btn" @click="toggleLocale">
+              <span>
+                <mdi:translate></mdi:translate>
+              </span>
+            </button>
           </div>
         </div>
 
-        <LoginWindow v-model:showWindow="loginWindow"></LoginWindow>
+        <LoginWindow v-model:showWindow="loginWindow" v-model:currentTab="currentTab"></LoginWindow>
       </div>
     </div>
   </header>
@@ -94,12 +109,7 @@ const loginWindow = ref(false)
   }
 
   &__link {
-    @apply relative block font-semibold duration-75 transition-colors;
-
-    &:hover,
-    &:focus {
-      @apply text-warm-gray-400;
-    }
+    @apply relative block font-semibold;
 
     &:hover {
       &:after {
@@ -112,7 +122,7 @@ const loginWindow = ref(false)
     }
 
     &:after {
-      @apply absolute -bottom-2 left-0 right-0 mx-auto w-full h-0.5 bg-warm-gray-400 duration-75 opacity-0;
+      @apply absolute -bottom-2 left-0 right-0 mx-auto w-full h-0.5 bg-warm-gray-400 transition opacity-0;
       content: "";
     }
   }

@@ -1,7 +1,23 @@
-intro:
-  hi: Hi, {name}!
-not-found: Not found
+nav-links:
+  home: Home
+  about: About me
 header:
   account-settings: Account settings
   logout: Logout
   signed-in: Signed in as
+intro:
+  hi: Hi, {name}!
+login:
+  forgot-password: Forgot password
+  login: Login
+  logout: Logout
+  sign-in: Sign in
+  sign-up: Sign up
+  register: Register
+not-found: Not found
+email: E-mail
+password: Password
+validation:
+  min-password-length: Min password length - {length}
+  non-correct-email: Email is invalid
+  required-value: Value is required

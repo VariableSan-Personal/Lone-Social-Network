@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "@iconify/iconify": "^1.0.7",
+    "@vuelidate/core": "^2.0.0-alpha.17",
+    "@vuelidate/validators": "^2.0.0-alpha.14",
     "@vueuse/core": "^4.6.3",
     "@vueuse/head": "^0.5.1",
     "axios": "^0.21.1",
@@ -22,6 +24,7 @@
     "@iconify/json": "^1.1.337",
     "@intlify/vite-plugin-vue-i18n": "^2.0.4",
     "@types/nprogress": "^0.2.0",
+    "@types/vuelidate": "^0.7.14",
     "@typescript-eslint/eslint-plugin": "^4.20.0",
     "@vitejs/plugin-vue": "^1.2.1",
     "@vue/compiler-sfc": "^3.0.10",

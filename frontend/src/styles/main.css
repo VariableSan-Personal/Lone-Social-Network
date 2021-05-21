@@ -41,7 +41,7 @@ img {
   @apply p-2 rounded inline-flex cursor-pointer transition duration;
 }
 
-.btn:hover {
+.btn:hover, .btn:focus {
   @apply text-warm-gray-400;
 }
 
@@ -66,11 +66,11 @@ img {
 }
 
 .link--default {
-  @apply p-2;
+  @apply transition-colors;
 }
 
-.link--default:focus {
-  @apply outline-none ring-2 ring-blue-400 ring-opacity-50;
+.link--default:focus, .link--default:hover {
+  @apply outline-none text-warm-gray-400;
 }
 
 .bg--default {

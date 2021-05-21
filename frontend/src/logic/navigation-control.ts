@@ -5,11 +5,11 @@ export const drawer = ref(false)
 
 export const links = ref<TLink[]>([
   {
-    title: 'Home',
+    title: 'nav-links.home',
     href: '/',
   },
   {
-    title: 'About me',
+    title: 'nav-links.about',
     href: '/about',
   },
 ])

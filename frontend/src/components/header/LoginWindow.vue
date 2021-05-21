@@ -1,6 +1,7 @@
 <script setup lang='ts'>
-import { computed, defineProps, getCurrentInstance } from '@vue/runtime-core'
+import { computed, defineProps, getCurrentInstance, watch } from '@vue/runtime-core'
 import LoginComponentVue from './LoginComponent.vue'
+import RegisterComponentVue from './RegisterComponent.vue'
 import type { TTab } from '~/helpers/types/Tab.type'
 
 const props = defineProps({
@@ -8,9 +9,23 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+
+  currentTab: {
+    default: 0,
+  },
 })
 
 const instance = getCurrentInstance()
+
+const currentTabT = computed({
+  get() {
+    return props.currentTab
+  },
+
+  set(value) {
+    instance?.emit('update:currentTab', value)
+  },
+})
 
 const showWindowT = computed({
   get(): boolean {
@@ -24,18 +39,28 @@ const showWindowT = computed({
 
 const tabs: TTab[] = [
   {
-    title: 'Login',
+    title: 'login.login',
     component: LoginComponentVue,
+  },
+  {
+    title: 'login.register',
+    component: RegisterComponentVue,
   },
 ]
 
+watch(showWindowT, () => {
+  if (showWindowT.value === true)
+    document.body.classList.add('overflow-y-hidden')
+  else
+    document.body.classList.remove('overflow-y-hidden')
+})
 </script>
 
 <template>
   <ModalWindow v-model:showWindow="showWindowT" block-class="flex items-center justify-center">
     <template #content>
-      <div class="w-1/2 h-36 bg-warm-gray-600">
-        <DynamicTab :tabs="tabs"></DynamicTab>
+      <div class="bg-white dark:bg-cool-gray-700 pb-8 px-2 rounded">
+        <DynamicTab v-model:currentTab="currentTabT" :tabs="tabs" wrapper-class="px-2"></DynamicTab>
       </div>
     </template>
   </ModalWindow>

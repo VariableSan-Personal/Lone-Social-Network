@@ -16,7 +16,7 @@ watch(home, () => {
     <div class="container">
       <p class="w-full text-center py-4 dark:text-gray-600">
         Copyright © 2021
-        <a :href="githubUrl">JudgementHC</a>
+        <a class="focus:outline-none focus:underline hover:underline" :href="githubUrl">JudgementHC</a>
       </p>
     </div>
   </footer>

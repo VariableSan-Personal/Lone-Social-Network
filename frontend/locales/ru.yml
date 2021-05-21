@@ -1,7 +1,23 @@
+email: Электронная почта
 header:
   account-settings: Настройки аккаунта
   logout: Выйти
   signed-in: Вы вошли как
 intro:
   hi: Привет, {name}!
+login:
+  forgot-password: Забыли пароль
+  login: Вход
+  logout: Выйти
+  register: Регистрация
+  sign-in: Войти
+  sign-up: Зарегистрироваться
+nav-links:
+  about: Обо мне
+  home: Главная
 not-found: Не найдено
+password: Пароль
+validation:
+  min-password-length: Минимальная длина пароля - {length}
+  non-correct-email: Электронная почта недействительна
+  required-value: Требуется значение

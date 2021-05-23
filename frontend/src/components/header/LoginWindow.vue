@@ -59,7 +59,7 @@ watch(showWindowT, () => {
 <template>
   <ModalWindow v-model:showWindow="showWindowT" block-class="flex items-center justify-center">
     <template #content>
-      <div class="bg-white dark:bg-cool-gray-700 pb-8 px-2 rounded">
+      <div class="max-w-80 w-full pb-8 px-2 bg-white dark:bg-cool-gray-700 rounded">
         <DynamicTab v-model:currentTab="currentTabT" :tabs="tabs" wrapper-class="px-2"></DynamicTab>
       </div>
     </template>

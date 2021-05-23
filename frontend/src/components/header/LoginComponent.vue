@@ -3,6 +3,7 @@ import { getCurrentInstance, onMounted, reactive, ref, toRef } from 'vue'
 import { useVuelidate } from '@vuelidate/core'
 import { required, email, minLength, helpers } from '@vuelidate/validators'
 import { useI18n } from 'vue-i18n'
+import { login, user, token } from '~/logic'
 
 const { t } = useI18n()
 
@@ -35,6 +36,13 @@ const onSubmit = () => {
 
   if (validation.value.$invalid)
     return false
+
+  const { email, password } = form
+
+  login({
+    email,
+    password,
+  })
 }
 
 const loginInput = ref<HTMLElement>()
@@ -45,11 +53,12 @@ onMounted(() => {
 </script>
 
 <template>
+  <h4>{{ token?.access_token }}</h4>
+  <h4>{{ user?.first_name }}</h4>
+
   <form class="px-4" novalidate @submit.prevent="onSubmit">
     <div class="mb-2">
-      <label class="block text-sm font-normal mb-2" :for="`email-${instance?.uid}`">
-        {{ t('email') }}
-      </label>
+      <label class="block text-sm font-normal mb-2" :for="`email-${instance?.uid}`">{{ t('email') }}</label>
 
       <input
         :id="`email-${instance?.uid}`"
@@ -68,9 +77,10 @@ onMounted(() => {
     </div>
 
     <div class="mb-4">
-      <label class="block text-sm font-normal mb-2" :for="`password-${instance?.uid}`">
-        {{ t('password') }}
-      </label>
+      <label
+        class="block text-sm font-normal mb-2"
+        :for="`password-${instance?.uid}`"
+      >{{ t('password') }}</label>
       <input
         :id="`password-${instance?.uid}`"
         v-model="form.password"

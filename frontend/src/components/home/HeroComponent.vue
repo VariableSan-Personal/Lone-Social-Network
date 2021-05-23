@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { reactive, ref, watch } from 'vue'
-import { user, home, imageLoader, URL } from '~/logic'
+import { user, home, imageLoader, getAsset } from '~/logic'
 
 const hero = ref<HTMLElement>()
 const fileInput = ref<HTMLElement>()
@@ -26,7 +26,7 @@ const bgDrag = ref(false)
 const initialMouseOffsetY = ref(0)
 
 watch(home, () => {
-  imageSrc.value = URL.assets(home.value?.cover_image.id || '')
+  imageSrc.value = getAsset(home.value?.cover_image.id || '')
   bgPosition.y = -(home.value?.y_axis || 0)
 })
 

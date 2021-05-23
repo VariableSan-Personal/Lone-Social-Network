@@ -3,9 +3,14 @@ import { onMounted } from 'vue'
 import { home, getHomeData } from '~/logic'
 
 onMounted(async() => {
-  const response = await getHomeData()
+  try {
+    const response = await getHomeData()
 
-  home.value = response.data.data
+    home.value = response
+  }
+  catch (error) {
+    console.error(error)
+  }
 })
 </script>
 

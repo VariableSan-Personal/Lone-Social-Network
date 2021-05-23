@@ -1,13 +1,17 @@
+export type TRefresh = {
+  refresh_token: string
+}
+
 export type TToken = {
   access_token: string
   expires: number
   refresh_token: string
 }
 
-export type Metadata = {
+export type TMetadata = {
 }
 
-export type Avatar = {
+export type TAvatar = {
   charset: null
   description: null
   duration: null
@@ -19,7 +23,7 @@ export type Avatar = {
   height: number
   id: string
   location: null
-  metadata: Metadata
+  metadata: TMetadata
   modified_by: null
   modified_on: string
   storage: string
@@ -31,7 +35,7 @@ export type Avatar = {
   width: number
 }
 
-export type Role = {
+export type TRole = {
   admin_access: boolean
   app_access: boolean
   collection_list: null
@@ -62,6 +66,6 @@ export type TUser = {
   theme: string
   title: string
   token: null
-  avatar: Avatar
-  role: Role
+  avatar: TAvatar
+  role: TRole
 }

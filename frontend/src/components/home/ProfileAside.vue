@@ -1,11 +1,11 @@
 <script setup lang='ts'>
 import { ref, watch } from 'vue'
-import { user, imageLoader, URL, home } from '~/logic'
+import { user, imageLoader, getAsset, home } from '~/logic'
 
 const imageSrc = ref('')
 
 watch(home, () => {
-  imageSrc.value = URL.assets(home.value?.admin_info.avatar.id || '')
+  imageSrc.value = getAsset(home.value?.admin_info.avatar.id || '')
 })
 
 const fileInput = ref<HTMLElement>()

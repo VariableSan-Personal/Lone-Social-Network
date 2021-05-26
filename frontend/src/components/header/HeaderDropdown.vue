@@ -1,7 +1,10 @@
 <script setup lang='ts'>
-import { ref } from '@vue/runtime-core'
+import { getCurrentInstance, ref } from '@vue/runtime-core'
 import { useI18n } from 'vue-i18n'
-import { logout } from '~/logic'
+import { DashAuthService } from '~/logic'
+
+const instance = getCurrentInstance()
+const dashAuthService = new DashAuthService(instance)
 
 const imageSrc = ref('')
 
@@ -44,7 +47,7 @@ const { t } = useI18n()
         <mdi:account-settings-variant></mdi:account-settings-variant>
       </router-link>
 
-      <a href="#" class="header-dropdown__item" @click.prevent="logout()">
+      <a href="#" class="header-dropdown__item" @click.prevent="dashAuthService.logout()">
         <span>{{ t('header.logout') }}</span>
         <mdi:logout></mdi:logout>
       </a>

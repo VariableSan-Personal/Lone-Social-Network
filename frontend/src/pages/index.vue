@@ -1,10 +1,13 @@
 <script setup lang='ts'>
-import { onMounted } from 'vue'
-import { home, getHomeData } from '~/logic'
+import { getCurrentInstance, onMounted } from 'vue'
+import { DashHomeService, home } from '~/logic'
+
+const instance = getCurrentInstance()
+const dashHomeService = new DashHomeService(instance)
 
 onMounted(async() => {
   try {
-    const response = await getHomeData()
+    const response = await dashHomeService.getHomeData()
 
     home.value = response
   }

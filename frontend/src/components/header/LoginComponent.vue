@@ -1,13 +1,15 @@
 <script setup lang='ts'>
-import { getCurrentInstance, onMounted, reactive, ref, toRef } from 'vue'
 import { useVuelidate } from '@vuelidate/core'
-import { required, email, minLength, helpers } from '@vuelidate/validators'
+import { email, helpers, minLength, required } from '@vuelidate/validators'
+import { getCurrentInstance, onMounted, reactive, ref, toRef } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { login, user, token } from '~/logic'
+import { DashAuthService, token, user } from '~/logic'
 
 const { t } = useI18n()
 
 const instance = getCurrentInstance()
+
+const dashAuthService = new DashAuthService(instance)
 
 const form = reactive({
   email: '',
@@ -39,7 +41,7 @@ const onSubmit = () => {
 
   const { email, password } = form
 
-  login({
+  dashAuthService.login({
     email,
     password,
   })

@@ -1,47 +1,42 @@
+import { ComponentInternalInstance } from 'vue'
 import { clearUserInfo, token } from '../user'
-import { $dashboardAxios } from './axios'
-import { fieldsJoiner } from './helpers'
+import { DashAxiosService } from '~/helpers/abstracts/DashAxios'
 import { TLogin } from '~/helpers/types/Login.type'
 import { TRefresh, TToken } from '~/helpers/types/User.type'
-import { THome } from '~/helpers/types/Home.type'
 
-export const login = async(login: TLogin): Promise<void> => {
-  try {
-    const some = await $dashboardAxios.post('/auth/login', login) as TToken
-
-    token.value = some
+export class DashAuthService extends DashAxiosService {
+  constructor(currentInstance: ComponentInternalInstance | null) {
+    super(currentInstance)
   }
-  catch (error) {
-    console.error(error)
+
+  async login(login: TLogin) {
+    try {
+      const some = await this.axios.post('/auth/login', login) as TToken
+
+      token.value = some
+    }
+    catch (error) {
+      console.error(error)
+    }
   }
-}
 
-export const refreshToken = async(): Promise<void> => {
-  const refreshedToken = await $dashboardAxios.post('/auth/refresh', {
-    refresh_token: token.value?.refresh_token,
-  } as TRefresh) as {data: TToken}
+  async refreshToken() {
+    const refresh: TRefresh = {
+      refresh_token: token.value?.refresh_token || '',
+    }
 
-  console.info(refreshedToken)
-}
+    const refreshedToken = await this.axios.post('/auth/refresh', refresh) as TToken
 
-export const logout = async(): Promise<void> => {
-  try {
-    await $dashboardAxios.post('/auth/logout', token.value?.refresh_token)
-    clearUserInfo()
+    console.info(refreshedToken)
   }
-  catch (error) {
-    console.error(error)
+
+  async logout() {
+    try {
+      await this.axios.post('/auth/logout', token.value?.refresh_token)
+      clearUserInfo()
+    }
+    catch (error) {
+      console.error(error)
+    }
   }
-}
-
-export const getHomeData = (): Promise<THome> => {
-  const params = [
-    '*',
-    'avatar.id',
-    'cover_image.id',
-    'social_links.*',
-    'admin_info.*.*',
-  ]
-
-  return $dashboardAxios.get(`/items/home?${fieldsJoiner(params)}`)
 }

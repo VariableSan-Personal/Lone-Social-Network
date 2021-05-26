@@ -1,14 +1,15 @@
 <script setup lang='ts'>
-import { ref, watch } from 'vue'
+import { getCurrentInstance, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { drawer, links, user, getAsset } from '~/logic'
+import { drawer, getAsset, links, user } from '~/logic'
 
+const instance = getCurrentInstance()
 const { t } = useI18n()
 
 const imageSrc = ref('')
 
 watch(user, () => {
-  imageSrc.value = getAsset(user.value?.avatar.id || '')
+  imageSrc.value = getAsset((user.value?.avatar.id || ''), instance)
 })
 </script>
 

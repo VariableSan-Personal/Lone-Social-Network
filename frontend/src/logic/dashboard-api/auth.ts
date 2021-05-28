@@ -11,9 +11,9 @@ export class DashAuthService extends DashAxiosService {
 
   async login(login: TLogin) {
     try {
-      const some = await this.axios.post('/auth/login', login) as TToken
+      const response = await this.axios.post('/auth/login', login) as TToken
 
-      token.value = some
+      token.value = response
     }
     catch (error) {
       console.error(error)

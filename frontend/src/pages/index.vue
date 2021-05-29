@@ -25,7 +25,7 @@ onMounted(async() => {
       <ProfileAside class="w-9/12 mx-auto lg:w-1/4"></ProfileAside>
 
       <div class="w-full lg:w-3/4 pl-4 some">
-        <h1>some_text</h1>
+        <h1>Content</h1>
       </div>
     </div>
   </div>

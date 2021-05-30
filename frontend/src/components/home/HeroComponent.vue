@@ -1,7 +1,9 @@
 <script lang="ts" setup>
-import { getCurrentInstance, reactive, ref, watch } from 'vue'
+import { isEmpty } from 'lodash'
+import { getCurrentInstance, onBeforeMount, reactive, ref, watch } from 'vue'
 import { getAsset, home, imageLoader, user } from '~/logic'
 
+/* ==================== variables START ==================== */
 const hero = ref<HTMLElement>()
 const fileInput = ref<HTMLElement>()
 
@@ -26,12 +28,20 @@ const bgDrag = ref(false)
 const initialMouseOffsetY = ref(0)
 
 const instance = getCurrentInstance()
+/* ==================== variables END ==================== */
 
+/* ==================== hooks START ==================== */
 watch(home, () => {
-  imageSrc.value = getAsset((home.value?.cover_image.id || ''), instance)
-  bgPosition.y = -(home.value?.y_axis || 0)
+  initValues()
 })
 
+onBeforeMount(() => {
+  if (!isEmpty(home.value))
+    initValues()
+})
+/* ==================== hooks END ==================== */
+
+/* ==================== methods START ==================== */
 const onMouseMove = (event: MouseEvent) => {
   if (bgDrag.value)
     bgPosition.y = -(initialMouseOffsetY.value - event.offsetY)
@@ -64,6 +74,13 @@ const onAdjust = () => {
   settingMode.value = true
   saveLastValue()
 }
+/* ==================== methods END ==================== */
+
+/* ==================== helpers START ==================== */
+function initValues() {
+  imageSrc.value = getAsset((home.value?.cover_image.id || ''), instance)
+  bgPosition.y = -(home.value?.y_axis || 0)
+}
 
 function saveLastValue() {
   const { x, y } = bgPosition
@@ -71,6 +88,7 @@ function saveLastValue() {
   lastBgPosition.y = y
   lastImageSrc.value = imageSrc.value
 }
+/* ==================== helpers END ==================== */
 </script>
 
 <template>

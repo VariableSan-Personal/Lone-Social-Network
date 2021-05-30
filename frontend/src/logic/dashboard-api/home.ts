@@ -19,4 +19,8 @@ export class DashHomeService extends DashAxiosService {
 
     return this.axios.get(`/items/home?${fieldsJoiner(params)}`)
   }
+
+  getPortfolioWorks(): Promise<unknown> {
+    return this.axios.get('')
+  }
 }

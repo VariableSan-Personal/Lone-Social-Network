@@ -1,19 +1,27 @@
 <script setup lang='ts'>
 import { getCurrentInstance, onMounted } from 'vue'
+import { isEmpty } from 'lodash'
 import { DashHomeService, home } from '~/logic'
 
 const instance = getCurrentInstance()
-const dashHomeService = new DashHomeService(instance)
 
-onMounted(async() => {
-  try {
-    const response = await dashHomeService.getHomeData()
+const getHomeData = async() => {
+  if (isEmpty(home.value)) {
+    const dashHomeService = new DashHomeService(instance)
 
-    home.value = response
+    try {
+      const response = await dashHomeService.getHomeData()
+
+      home.value = response
+    }
+    catch (error) {
+      console.error(error)
+    }
   }
-  catch (error) {
-    console.error(error)
-  }
+}
+
+onMounted(() => {
+  getHomeData()
 })
 </script>
 

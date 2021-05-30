@@ -1,18 +1,29 @@
 <script setup lang='ts'>
-import { getCurrentInstance, ref, watch } from 'vue'
+import { isEmpty } from 'lodash'
+import { getCurrentInstance, onBeforeMount, ref, watch } from 'vue'
 import { user, imageLoader, getAsset, home } from '~/logic'
 
 const imageSrc = ref('')
 
 const instance = getCurrentInstance()
+
 watch(home, () => {
-  imageSrc.value = getAsset((home.value?.admin_info.avatar.id || ''), instance)
+  initValues()
+})
+
+onBeforeMount(() => {
+  if (!isEmpty(home.value))
+    initValues()
 })
 
 const fileInput = ref<HTMLElement>()
 
 const onFileChange = (progressEvent: ProgressEvent<FileReader>) => {
   // progressEvent.target?.result
+}
+
+function initValues() {
+  imageSrc.value = getAsset((home.value?.admin_info.avatar.id || ''), instance)
 }
 </script>
 

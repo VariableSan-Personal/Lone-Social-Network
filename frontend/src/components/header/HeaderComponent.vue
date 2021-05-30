@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { isDark, user, drawer, links, toggleDark } from '~/logic'
 
@@ -12,6 +12,19 @@ const currentTab = ref(0)
 const toggleLocale = () => {
   locale.value = availableLocales.find(el => el !== locale.value) || 'en'
 }
+
+onMounted(() => {
+  const uiLang = navigator.language
+
+  switch (uiLang) {
+    case 'ru-RU':
+      locale.value = 'ru'
+      break
+    default:
+      locale.value = 'en'
+      break
+  }
+})
 </script>
 
 <template>

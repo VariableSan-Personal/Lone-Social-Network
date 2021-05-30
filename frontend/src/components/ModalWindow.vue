@@ -1,5 +1,7 @@
 <script setup lang='ts'>
-import { defineProps } from '@vue/runtime-core'
+import { defineProps, getCurrentInstance, onBeforeUnmount, onMounted } from '@vue/runtime-core'
+
+const instance = getCurrentInstance()
 
 defineProps({
   showWindow: {
@@ -13,6 +15,18 @@ defineProps({
   },
 })
 
+onMounted(() => {
+  document.addEventListener('keyup', keyInit)
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('keyup', keyInit)
+})
+
+function keyInit(e: KeyboardEvent) {
+  if (e.which === 27)
+    instance?.emit('update:showWindow', false)
+}
 </script>
 
 <template>
@@ -24,11 +38,7 @@ defineProps({
     leave-active-class="ease-out transition-medium"
     leave-to-class="opacity-0"
   >
-    <div
-      v-if="showWindow"
-      :class="blockClass"
-      class="fixed inset-0 z-10 transition-opacity"
-    >
+    <div v-if="showWindow" :class="blockClass" class="fixed inset-0 z-10 transition-opacity">
       <div
         class="modal-window__cover absolute inset-0 bg-black opacity-50 cursor-pointer"
         tabindex="-1"

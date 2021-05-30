@@ -9,11 +9,13 @@
   },
   "dependencies": {
     "@iconify/iconify": "^1.0.7",
+    "@types/lodash": "^4.14.170",
     "@vuelidate/core": "^2.0.0-alpha.18",
     "@vuelidate/validators": "^2.0.0-alpha.15",
     "@vueuse/core": "^4.11.1",
     "@vueuse/head": "^0.5.1",
     "axios": "^0.21.1",
+    "lodash": "^4.17.21",
     "nprogress": "^0.2.0",
     "prism-theme-vars": "^0.2.2",
     "vue": "^3.0.11",

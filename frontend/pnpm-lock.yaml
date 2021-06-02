@@ -48,6 +48,7 @@ specifiers:
   vue-i18n: ^9.1.6
   vue-jest: ^5.0.0-alpha.9
   vue-router: ^4.0.8
+  vue-screen: ^2.0.3-alpha.3
   vue-template-compiler: 2.6.12
 
 dependencies:
@@ -64,6 +65,7 @@ dependencies:
   vue: 3.0.11
   vue-i18n: 9.1.6_vue@3.0.11
   vue-router: 4.0.8_vue@3.0.11
+  vue-screen: 2.0.3-alpha.3_vue@3.0.11
 
 devDependencies:
   '@antfu/eslint-config': 0.6.5_eslint@7.27.0+typescript@4.3.2
@@ -7960,6 +7962,14 @@ packages:
     dependencies:
       '@vue/devtools-api': 6.0.0-beta.12
       vue: 3.0.11
+
+  /vue-screen/2.0.3-alpha.3_vue@3.0.11:
+    resolution: {integrity: sha512-A3y/fb+ttGBppOiv+6hE5pGKcA+2Tk87u5DJlFoQgnDQRE74FMlJgyMnVq8I+p1dr2MzqkHknnpLqfeecMNS0g==}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      vue: 3.0.11
+    dev: false
 
   /vue-template-compiler/2.6.12:
     resolution: {integrity: sha512-OzzZ52zS41YUbkCBfdXShQTe69j1gQDZ9HIX8miuC9C3rBCk9wIRjLiZZLrmX9V+Ftq/YEyv1JaVr5Y/hNtByg==}

@@ -1,6 +1,7 @@
 <script setup lang='ts'>
 import { onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { ELanguages } from '~/helpers/enums/Languages.enum'
 import { isDark, user, drawer, links, toggleDark } from '~/logic'
 
 const { t, availableLocales, locale } = useI18n()
@@ -10,18 +11,18 @@ const loginWindow = ref(false)
 const currentTab = ref(0)
 
 const toggleLocale = () => {
-  locale.value = availableLocales.find(el => el !== locale.value) || 'en'
+  locale.value = availableLocales.find(el => el !== locale.value) || 'en-US'
 }
 
 onMounted(() => {
   const uiLang = navigator.language
 
   switch (uiLang) {
-    case 'ru-RU':
-      locale.value = 'ru'
+    case ELanguages.RU:
+      locale.value = uiLang
       break
     default:
-      locale.value = 'en'
+      locale.value = ELanguages.EN
       break
   }
 })

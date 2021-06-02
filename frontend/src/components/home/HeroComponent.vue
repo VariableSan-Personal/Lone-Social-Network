@@ -158,7 +158,7 @@ function saveLastValue() {
 
 <style lang="postcss">
 .hero {
-  @apply relative;
+  @apply relative shadow-lg;
   padding: 25% 0;
   @screen sm {
     padding: 15% 0;

@@ -1,6 +1,6 @@
 import { ComponentInternalInstance } from 'vue'
 import { fieldsJoiner } from './helpers'
-import { DashAxiosService } from '~/helpers/abstracts/DashAxios'
+import { DashAxiosService } from '~/helpers/abstracts/BaseAxios'
 import { THome } from '~/helpers/types/Home.type'
 import { TPortfolioWork } from '~/helpers/types/PortfolioWork.type'
 

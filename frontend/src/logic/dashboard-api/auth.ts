@@ -1,6 +1,6 @@
 import { ComponentInternalInstance } from 'vue'
 import { clearUserInfo, token } from '../user'
-import { DashAxiosService } from '~/helpers/abstracts/DashAxios'
+import { DashAxiosService } from '~/helpers/abstracts/BaseAxios'
 import { TLogin } from '~/helpers/types/Login.type'
 import { TRefresh, TToken } from '~/helpers/types/User.type'
 

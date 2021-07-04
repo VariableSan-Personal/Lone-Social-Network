@@ -27,6 +27,7 @@ specifiers:
   js-cookie: ^2.2.1
   lodash: ^4.17.21
   markdown-it-prism: ^2.1.6
+  mitt: ^3.0.0
   nprogress: ^0.2.0
   pnpm: ^5.18.9
   prettier: ^2.3.0
@@ -64,6 +65,7 @@ dependencies:
   axios: 0.21.1
   js-cookie: 2.2.1
   lodash: 4.17.21
+  mitt: 3.0.0
   nprogress: 0.2.0
   prism-theme-vars: 0.2.2
   vue: 3.0.11
@@ -5711,6 +5713,10 @@ packages:
   /minimist/1.2.5:
     resolution: {integrity: sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==}
     dev: true
+
+  /mitt/3.0.0:
+    resolution: {integrity: sha512-7dX2/10ITVyqh4aOSVI9gdape+t9l2/8QxHrFmUXu4EEUpdlxl6RudZUPZoc+zuY2hk1j7XxVroIVIan/pD/SQ==}
+    dev: false
 
   /mixin-deep/1.3.2:
     resolution: {integrity: sha512-WRoDn//mXBiJ1H40rqa3vH0toePwSsGb45iInWlTySa+Uu4k3tYUSxa2v1KqAiLtvlrSzaExqS1gtk96A9zvEA==}

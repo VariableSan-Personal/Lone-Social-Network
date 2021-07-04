@@ -18,7 +18,11 @@ login:
 nav-links:
   about: About me
   home: Home
-not-found: Not found
+errors:
+  not-found: Not found
+  not-exist: Page does not exist
+  not-auth: Not authenticated
+  bad-request: There was a problem with the connection
 password: Password
 portfolio:
   date: Created date
@@ -31,3 +35,4 @@ validation:
   min-password-length: Min password length - {length}
   non-correct-email: Email is invalid
   required-value: Value is required
+  non-correct-data: Invalid username or password

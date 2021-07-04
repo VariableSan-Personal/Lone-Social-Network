@@ -1,7 +1,8 @@
 <script setup lang='ts'>
-import { getCurrentInstance, ref } from '@vue/runtime-core'
+import { onBeforeMount, getCurrentInstance, ref, watch } from '@vue/runtime-core'
+import { isEmpty } from 'lodash'
 import { useI18n } from 'vue-i18n'
-import { DashAuthService } from '~/logic'
+import { DashAuthService, getAsset, user } from '~/logic'
 
 const instance = getCurrentInstance()
 const dashAuthService = new DashAuthService(instance)
@@ -10,9 +11,18 @@ const imageSrc = ref('')
 
 const { t } = useI18n()
 
-/* watch(home, () => {
-  imageSrc.value = URL.assets(home.value?.avatar.id || '')
-}) */
+watch(user, () => {
+  initImage()
+})
+
+onBeforeMount(() => {
+  if (!isEmpty(user.value))
+    initImage()
+})
+
+function initImage() {
+  imageSrc.value = getAsset(user.value?.avatar.id || '', instance)
+}
 </script>
 
 <template>
@@ -36,7 +46,7 @@ const { t } = useI18n()
           {{ t('header.signed-in') }}
         </p>
         <p class="text-sm font-medium leading-5 truncate">
-          {{ 'some name' }}
+          {{ user?.email }}
         </p>
       </div>
     </template>

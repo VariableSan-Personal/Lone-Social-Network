@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { ELanguages } from '~/helpers/enums/Languages.enum'
-import { isDark, user, drawer, links, toggleDark } from '~/logic'
+import { drawer, isDark, links, toggleDark, user } from '~/logic'
 
 const { t, availableLocales, locale } = useI18n()
 

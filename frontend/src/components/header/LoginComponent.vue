@@ -3,7 +3,7 @@ import { useVuelidate } from '@vuelidate/core'
 import { email, helpers, minLength, required } from '@vuelidate/validators'
 import { getCurrentInstance, onMounted, reactive, ref, toRef } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { DashAuthService, token, user } from '~/logic'
+import { DashAuthService } from '~/logic'
 
 const { t } = useI18n()
 
@@ -15,6 +15,8 @@ const form = reactive({
   email: '',
   password: '',
 })
+
+const isProblem = ref(false)
 
 const formRules = {
   email: {
@@ -33,15 +35,16 @@ const validation = useVuelidate(formRules, {
   password: toRef(form, 'password'),
 })
 
-const onSubmit = () => {
+const onSubmit = async() => {
   validation.value.$touch()
+  isProblem.value = false
 
   if (validation.value.$invalid)
     return false
 
   const { email, password } = form
 
-  dashAuthService.login({
+  isProblem.value = await dashAuthService.login({
     email,
     password,
   })
@@ -55,10 +58,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <h4>{{ token?.access_token }}</h4>
-  <h4>{{ user?.first_name }}</h4>
-
   <form class="px-4" novalidate @submit.prevent="onSubmit">
+    <h2 v-if="isProblem" class="mb-4 text-red-400">
+      {{ t('validation.non-correct-data') }}
+    </h2>
+
     <div class="mb-2">
       <label class="block text-sm font-normal mb-2" :for="`email-${instance?.uid}`">{{ t('email') }}</label>
 

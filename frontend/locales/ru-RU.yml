@@ -2,6 +2,11 @@ about:
   now: Настоящее время
 back: Вернуться на главную
 email: Электронная почта
+errors:
+  bad-request: Возникла проблема с подключением
+  not-auth: Не аутентифицирован
+  not-exist: Страница не существует
+  not-found: Не найдено
 header:
   account-settings: Настройки аккаунта
   logout: Выйти
@@ -18,7 +23,6 @@ login:
 nav-links:
   about: Обо мне
   home: Главная
-not-found: Не найдено
 password: Пароль
 portfolio:
   date: Дата создания
@@ -29,5 +33,6 @@ portfolio:
   visit: Посетить сайт
 validation:
   min-password-length: Минимальная длина пароля - {length}
+  non-correct-data: Неправильное имя пользователя или пароль
   non-correct-email: Электронная почта недействительна
   required-value: Требуется значение

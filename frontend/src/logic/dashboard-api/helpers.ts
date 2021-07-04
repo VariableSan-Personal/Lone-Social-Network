@@ -3,23 +3,29 @@ import { ComponentInternalInstance } from 'vue'
 import { ELanguages } from '~/helpers/enums/Languages.enum'
 
 export function fieldsJoiner(params: string[]): string {
-  return params.map(field => `fields[]=${field}`).join('&')
+  return `fields=${params.join(',')}`
 }
 
-export function getAsset(url: string, instance: ComponentInternalInstance | null): string {
-  const $dashAxios = instance?.appContext.config.globalProperties.$dashAxios as AxiosInstance
+export function getAsset(
+  url: string,
+  instance: ComponentInternalInstance | null,
+): string {
+  const $dashAxios = instance?.appContext.config.globalProperties
+    .$dashAxios as AxiosInstance
 
   return `${$dashAxios.defaults.baseURL}/assets/${url}`
 }
 
 export function getTranslate(locale: string, object: any, key: string) {
   switch (locale) {
-    case ELanguages.RU:
-      return object.translations
-        .find(
-          (translate: { languages_code: ELanguages }) => translate.languages_code === ELanguages.RU,
-        )
-        ?.description
+    case ELanguages.RU: {
+      const translation = object.translations.find(
+        (translate: { languages_code: ELanguages }) =>
+          translate.languages_code === ELanguages.RU,
+      )
+
+      return translation[key]
+    }
     default:
       return object[key]
   }

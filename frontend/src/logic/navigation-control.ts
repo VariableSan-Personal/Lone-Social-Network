@@ -3,6 +3,8 @@ import { TLink } from '~/helpers/types/Link.type'
 
 export const drawer = ref(false)
 
+export const loading = ref(false)
+
 export const links = ref<TLink[]>([
   {
     title: 'nav-links.home',

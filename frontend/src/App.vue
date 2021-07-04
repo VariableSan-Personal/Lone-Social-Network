@@ -1,11 +1,24 @@
 <script setup lang='ts'>
+import { getCurrentInstance, onBeforeMount } from '@vue/runtime-core'
 import { useHead } from '@vueuse/head'
+import { DashAuthService } from './logic'
 
 useHead({
   title: 'Lone Social Network',
   meta: [
     { name: 'description', content: 'Lone Social Network Template' },
   ],
+})
+
+const instance = getCurrentInstance()
+
+const autoLogin = async() => {
+  const dashAuthService = new DashAuthService(instance)
+  dashAuthService.autoLogin()
+}
+
+onBeforeMount(() => {
+  autoLogin()
 })
 </script>
 

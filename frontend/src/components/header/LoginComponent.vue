@@ -1,4 +1,5 @@
 <script setup lang='ts'>
+import type { Emitter } from 'mitt'
 import { useVuelidate } from '@vuelidate/core'
 import { email, helpers, minLength, required } from '@vuelidate/validators'
 import { getCurrentInstance, onMounted, reactive, ref, toRef } from 'vue'
@@ -8,6 +9,7 @@ import { DashAuthService } from '~/logic'
 const { t } = useI18n()
 
 const instance = getCurrentInstance()
+const emitter = instance?.appContext.config.globalProperties.$emitter as Emitter<any>
 
 const dashAuthService = new DashAuthService(instance)
 
@@ -48,6 +50,9 @@ const onSubmit = async() => {
     email,
     password,
   })
+
+  if (!isProblem.value)
+    emitter.emit('hide:loginWindow')
 }
 
 const loginInput = ref<HTMLElement>()

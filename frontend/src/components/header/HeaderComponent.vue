@@ -1,10 +1,14 @@
 <script setup lang='ts'>
-import { onMounted, ref } from 'vue'
+import type { Emitter } from 'mitt'
+import { getCurrentInstance, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { ELanguages } from '~/helpers/enums/Languages.enum'
 import { drawer, isDark, links, toggleDark, user } from '~/logic'
 
 const { t, availableLocales, locale } = useI18n()
+
+const instance = getCurrentInstance()
+const emitter = instance?.appContext.config.globalProperties.$emitter as Emitter<any>
 
 const loginWindow = ref(false)
 
@@ -25,7 +29,12 @@ onMounted(() => {
       locale.value = ELanguages.EN
       break
   }
+
+  emitter.on('hide:loginWindow', () => {
+    loginWindow.value = false
+  })
 })
+
 </script>
 
 <template>
@@ -62,16 +71,7 @@ onMounted(() => {
         </nav>
 
         <div class="header__user">
-          <HeaderDropdown v-if="user" class="hidden sm:block"></HeaderDropdown>
-
-          <div v-else class="flex items-center">
-            <button class="btn" @click="loginWindow = true; currentTab = 1">
-              {{ t('login.sign-up') }}
-            </button>
-            <button class="btn" @click="loginWindow = true; currentTab = 0">
-              {{ t('login.login') }}
-            </button>
-
+          <div class="flex items-center mr-5">
             <button class="btn" @click="toggleDark">
               <span>
                 <carbon-moon v-if="isDark" />
@@ -83,6 +83,17 @@ onMounted(() => {
               <span>
                 <mdi:translate></mdi:translate>
               </span>
+            </button>
+          </div>
+
+          <HeaderDropdown v-if="user" class="hidden sm:block"></HeaderDropdown>
+
+          <div v-else class="flex items-center">
+            <button class="btn" @click="loginWindow = true; currentTab = 1">
+              {{ t('login.sign-up') }}
+            </button>
+            <button class="btn" @click="loginWindow = true; currentTab = 0">
+              {{ t('login.login') }}
             </button>
           </div>
         </div>

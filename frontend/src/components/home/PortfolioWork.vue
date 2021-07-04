@@ -71,7 +71,7 @@ const dateFormat = computed({
 
         <tr class="py-10">
           <td class="portfolio__td">
-            {{ t('portfolio.technologies') }}
+            {{ t('portfolio.technologies') }}:
           </td>
           <td class="py-4">
             <div v-html="portfolio.technologies"></div>

@@ -49,7 +49,7 @@ const tabs: TTab[] = [
 ]
 
 watch(showWindowT, () => {
-  if (showWindowT.value === true)
+  if (showWindowT.value)
     document.body.classList.add('overflow-y-hidden')
   else
     document.body.classList.remove('overflow-y-hidden')

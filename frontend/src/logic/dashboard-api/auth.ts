@@ -1,7 +1,7 @@
 import JSCookie from 'js-cookie'
 import { ComponentInternalInstance } from 'vue'
 import { clearUserInfo, token, user } from '../user'
-import { fieldsJoiner } from './helpers'
+import { fields, nested } from './helpers'
 import { DashAxiosService } from '~/helpers/abstracts/BaseAxios'
 import { TLogin } from '~/helpers/types/Login.type'
 import { TRefresh, TToken, TUser } from '~/helpers/types/User.type'
@@ -81,10 +81,17 @@ export class DashAuthService extends DashAxiosService {
   }
 
   private async setUser() {
-    const params = ['*.*']
+    const params = [
+      'avatar.id',
+      'email',
+      'first_name',
+      'id',
+      'last_name',
+      'role.admin_access',
+    ]
 
     const response = (await this.axios.get(
-      `/users/me?${fieldsJoiner(params)}`,
+      `/users/me?${fields(params)}`,
     )) as TUser
 
     localStorage.setItem('User', JSON.stringify(response))
@@ -109,6 +116,9 @@ export class DashAuthService extends DashAxiosService {
     if (cookieToken && localToken) {
       user.value = this.getUser()
       token.value = JSON.parse(localToken) as TToken
+    }
+    else {
+      this.logout(true)
     }
   }
 }

@@ -1,5 +1,5 @@
 import { ComponentInternalInstance } from 'vue'
-import { fieldsJoiner } from './helpers'
+import { fields, nested } from './helpers'
 import { DashAxiosService } from '~/helpers/abstracts/BaseAxios'
 import { THome } from '~/helpers/types/Home.type'
 import { TPortfolioWork } from '~/helpers/types/PortfolioWork.type'
@@ -18,19 +18,17 @@ export class DashHomeService extends DashAxiosService {
       'admin_info.*.*',
     ]
 
-    return this.axios.get(`/items/home?${fieldsJoiner(params)}`)
+    return this.axios.get(`/items/home?${fields(params)}`)
   }
 
   getPortfolioWorks(): Promise<TPortfolioWork[]> {
     const params = [
       '*',
-      'translations.id',
-      'translations.description',
-      'translations.languages_code',
+      nested('translations', undefined, 'id', 'description', 'languages_code'),
     ]
 
     return this.axios.get(
-      `/items/portfolio_work?${fieldsJoiner(params)}&sort=-date&limit=10&page=1`,
+      `/items/portfolio_work?${fields(params)}&sort=-date&limit=10&page=1`,
     )
   }
 }

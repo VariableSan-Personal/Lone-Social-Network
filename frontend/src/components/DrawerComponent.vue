@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { getCurrentInstance, ref, watch } from 'vue'
+import { getCurrentInstance, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { drawer, getAsset, links, user } from '~/logic'
 
@@ -9,8 +9,16 @@ const { t } = useI18n()
 const imageSrc = ref('')
 
 watch(user, () => {
-  imageSrc.value = getAsset((user.value?.avatar.id || ''), instance)
+  setImage()
 })
+
+onMounted(() => {
+  setImage()
+})
+
+function setImage() {
+  imageSrc.value = getAsset((user.value?.avatar.id || ''), instance)
+}
 </script>
 
 <template>

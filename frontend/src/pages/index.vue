@@ -35,7 +35,7 @@ async function getHomeData() {
   <section class="pb-12">
     <div class="container">
       <div class="flex flex-wrap items-start">
-        <ProfileAside class="w-9/12 mx-auto lg:w-1/4"></ProfileAside>
+        <ProfileAside class="w-full mx-auto sm:w-9/12 lg:w-1/4"></ProfileAside>
 
         <div class="w-full mt-12 lg:w-3/4 lg:pl-8">
           <h2 class="mb-12 text-3xl lg:text-4xl font-bold">
@@ -52,9 +52,3 @@ async function getHomeData() {
     </div>
   </section>
 </template>
-
-<style lang="postcss">
-.some {
-  height: 200vh;
-}
-</style>

@@ -2,8 +2,19 @@ import { AxiosInstance } from 'axios'
 import { ComponentInternalInstance } from 'vue'
 import { ELanguages } from '~/helpers/enums/Languages.enum'
 
-export function fieldsJoiner(params: string[]): string {
+export function fields(params: string[]): string {
   return `fields=${params.join(',')}`
+}
+
+export function nested(
+  root: string,
+  translations = true,
+  ...enclosure: string[]
+) {
+  if (translations)
+    enclosure.push('translations.*')
+
+  return `${root}.${enclosure.join(`,${root}.`)}`
 }
 
 export function getAsset(

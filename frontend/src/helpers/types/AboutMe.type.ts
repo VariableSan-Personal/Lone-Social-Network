@@ -10,7 +10,20 @@ export type TExperience = {
   translations: number[]
 }
 
+export type TEducation = {
+  about_me_id: string
+  degree: string
+  end_date: string
+  id: string
+  sort: null
+  start_date: string
+  status: string
+  title: string
+  translations: number[]
+}
+
 export type TAboutMe = {
   id: string
   experience: TExperience[]
+  education: TEducation[]
 }

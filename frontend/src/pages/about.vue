@@ -32,8 +32,9 @@ onMounted(() => {
       </h1>
     </div>
 
-    <div class="md:grid grid-rows-4 grid-flow-col gap-4">
+    <div class="md:grid grid-flow-col grid-rows-2 grid-cols-2 gap-4">
       <ExperienceComponent :experience="aboutData?.experience"></ExperienceComponent>
+      <EducationComponent :education="aboutData?.education"></EducationComponent>
     </div>
   </div>
 </template>

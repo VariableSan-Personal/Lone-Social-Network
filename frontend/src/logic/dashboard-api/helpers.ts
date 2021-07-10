@@ -11,8 +11,7 @@ export function nested(
   translations = true,
   ...enclosure: string[]
 ) {
-  if (translations)
-    enclosure.push('translations.*')
+  if (translations) enclosure.push('translations.*')
 
   return `${root}.${enclosure.join(`,${root}.`)}`
 }
@@ -40,4 +39,20 @@ export function getTranslate(locale: string, object: any, key: string) {
     default:
       return object[key]
   }
+}
+
+export function getMonthAndYear(
+  date: string | null,
+  locale: string,
+  t: Function,
+): string {
+  if (date) {
+    const dateLocale = new Date(date).toLocaleString(locale, {
+      month: 'short',
+      year: 'numeric',
+    })
+    return dateLocale.charAt(0).toUpperCase() + dateLocale.slice(1)
+  }
+
+  return t('about.now')
 }

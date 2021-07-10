@@ -2,7 +2,7 @@
 import { defineProps } from '@vue/runtime-core'
 import { useI18n } from 'vue-i18n'
 import type { TExperience } from '~/helpers/types/AboutMe.type'
-import { getTranslate } from '~/logic'
+import { getTranslate, getMonthAndYear } from '~/logic'
 
 const { locale, t } = useI18n()
 
@@ -12,17 +12,6 @@ defineProps({
   },
 })
 
-const getMonthAndYear = (date: string | null): string => {
-  if (date) {
-    const dateLocale = new Date(date).toLocaleString(locale.value, {
-      month: 'short',
-      year: 'numeric',
-    })
-    return dateLocale.charAt(0).toUpperCase() + dateLocale.slice(1)
-  }
-
-  return t('about.now')
-}
 </script>
 
 <template>
@@ -41,7 +30,7 @@ const getMonthAndYear = (date: string | null): string => {
       <p
         class="mb-2 leading-normal text-md text-gray-600 dark:text-white"
       >
-        {{ getMonthAndYear(exp.start_date) }} - {{ getMonthAndYear(exp.end_date) }} | {{ getTranslate(locale, exp, 'position_name') }}
+        {{ getMonthAndYear(exp.start_date, locale, t) }} - {{ getMonthAndYear(exp.end_date, locale, t) }} | {{ getTranslate(locale, exp, 'position_name') }}
       </p>
 
       <p

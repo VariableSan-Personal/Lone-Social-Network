@@ -86,19 +86,23 @@ onMounted(() => {
             </button>
           </div>
 
-          <HeaderDropdown v-if="user" class="hidden sm:block"></HeaderDropdown>
-
-          <div v-else class="flex items-center">
-            <button class="btn" @click="loginWindow = true; currentTab = 1">
-              {{ t('login.sign-up') }}
-            </button>
-            <button class="btn" @click="loginWindow = true; currentTab = 0">
-              {{ t('login.login') }}
-            </button>
+          <div v-if="false">
+            <HeaderDropdown v-if="user" class="hidden sm:block"></HeaderDropdown>
+            <div v-else class="flex items-center">
+              <button
+                class="btn"
+                @click="loginWindow = true; currentTab = 1"
+              >
+                {{ t('login.sign-up') }}
+              </button>
+              <button class="btn" @click="loginWindow = true; currentTab = 0">
+                {{ t('login.login') }}
+              </button>
+            </div>
           </div>
-        </div>
 
-        <LoginWindow v-model:showWindow="loginWindow" v-model:currentTab="currentTab"></LoginWindow>
+          <LoginWindow v-model:showWindow="loginWindow" v-model:currentTab="currentTab"></LoginWindow>
+        </div>
       </div>
     </div>
   </header>

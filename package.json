@@ -4,9 +4,13 @@
   "description": "",
   "scripts": {
     "package:install": "npm i -g npx pnpm",
-    "frontend": "cd frontend && pnpm dev",
+    "frontend:dev": "cd frontend && pnpm dev",
+    "frontend:serve": "cd frontend && pnpm preview",
     "dashboard": "cd dashboard && npx directus start",
-    "dev": "concurrently \"npm run frontend\" \"npm run dashboard\""
+    "dev": "concurrently \"npm run frontend:dev\" \"npm run dashboard\"",
+    "build": "cd frontend && pnpm build",
+    "serve": "npm run frontend:serve && npm run dashboard",
+    "heroku-postbuild": "npm run package:install && npm run build"
   },
   "repository": {
     "type": "git",

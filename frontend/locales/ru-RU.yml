@@ -1,5 +1,9 @@
 about:
+  fullname: Нургалиев Нурсултан
+  education: Образование
+  experience: Опыт
   now: Настоящее время
+  skills: Навыки и умения
 back: Вернуться на главную
 email: Электронная почта
 errors:
@@ -7,12 +11,18 @@ errors:
   not-auth: Не аутентифицирован
   not-exist: Страница не существует
   not-found: Не найдено
+footer:
+  dashboard: Админ-панель
+  home-page-design: Дизайн домашней страницы
+  links: Ссылки
+  resume-design: Дизайн резюме
 header:
   account-settings: Настройки аккаунта
   logout: Выйти
   signed-in: Вы вошли как
 intro:
   hi: Привет, {name}!
+level: уровень
 login:
   forgot-password: Забыли пароль
   login: Вход

@@ -5,12 +5,8 @@ import { loading } from '~/logic'
 import { UserModule } from '~/types'
 
 export const install: UserModule = ({ app, router }) => {
-  const URL = {
-    baseUrl: 'http://localhost:8055',
-  }
-
   const $dashAxios = axios.create({
-    baseURL: URL.baseUrl,
+    baseURL: import.meta.env.VITE_DASHBOARD as string,
   })
 
   $dashAxios.interceptors.request.use((onFulfilled) => {
@@ -22,9 +18,9 @@ export const install: UserModule = ({ app, router }) => {
     (onFulfilled) => {
       loading.value = false
       if (onFulfilled.status === 200) return onFulfilled.data.data
-
       return onFulfilled
     },
+
     (onRejected) => {
       loading.value = false
       redirect(onRejected.response.status, router)

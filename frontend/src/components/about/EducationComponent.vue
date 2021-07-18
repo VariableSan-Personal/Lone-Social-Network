@@ -15,13 +15,13 @@ defineProps({
 </script>
 
 <template>
-  <section>
-    <h2 class="mb-4 font-bold text-gray-500 dark:text-gray-400 tracking-widest uppercase">
-      Education
+  <section class="about__section">
+    <h2 class="about__headline">
+      {{ t('about.education') }}
     </h2>
 
-    <div v-for="edu in education" :key="edu.id" class="mb-8">
-      <h3 class="text-lg font-semibold text-gray-700 dark:text-white leading-snug">
+    <div v-for="edu in education" :key="edu.id" class="about__block">
+      <h3 class="about__title">
         {{ edu.title }}
       </h3>
 

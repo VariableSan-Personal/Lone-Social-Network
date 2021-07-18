@@ -2,6 +2,7 @@
 import type { Emitter } from 'mitt'
 import { getCurrentInstance, onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
+import LoneSocialLogo from 'public/lone-social-logo.svg?raw'
 import { ELanguages } from '~/helpers/enums/Languages.enum'
 import { drawer, isDark, links, toggleDark, user } from '~/logic'
 
@@ -48,11 +49,8 @@ onMounted(() => {
             <cil:hamburger-menu></cil:hamburger-menu>
           </button>
 
-          <router-link
-            to="/"
-            class="link--default font-bold text-xl font-serif sm:text-2xl"
-          >
-            Lone social
+          <router-link to="/" class="link--default header__icon">
+            <div class="flex items-center w-full h-full" v-html="LoneSocialLogo"></div>
           </router-link>
         </div>
 
@@ -63,9 +61,7 @@ onMounted(() => {
                 class="link--default header__link"
                 exact-active-class="after:opacity-100"
                 :to="link.href"
-              >
-                {{ t(link.title) }}
-              </router-link>
+              >{{ t(link.title) }}</router-link>
             </li>
           </ul>
         </nav>
@@ -92,12 +88,8 @@ onMounted(() => {
               <button
                 class="btn"
                 @click="loginWindow = true; currentTab = 1"
-              >
-                {{ t('login.sign-up') }}
-              </button>
-              <button class="btn" @click="loginWindow = true; currentTab = 0">
-                {{ t('login.login') }}
-              </button>
+              >{{ t('login.sign-up') }}</button>
+              <button class="btn" @click="loginWindow = true; currentTab = 0">{{ t('login.login') }}</button>
             </div>
           </div>
 
@@ -110,6 +102,21 @@ onMounted(() => {
 
 <style lang="postcss">
 .header {
+  &__icon {
+    @apply w-16;
+
+    &:hover {
+      svg path {
+        @apply fill-warm-gray-400 !important;
+      }
+    }
+
+    svg path {
+      @apply dark:fill-white;
+      @apply transition;
+    }
+  }
+
   &__logo,
   &__nav,
   &__user {

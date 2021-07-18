@@ -26,7 +26,7 @@ export function getAsset(
   return `${$dashAxios.defaults.baseURL}/assets/${url}`
 }
 
-export function getTranslate(locale: string, object: any, key: string) {
+export function getTranslate(locale: string, object: any, key: string): string {
   switch (locale) {
     case ELanguages.RU: {
       const translation = object.translations.find(

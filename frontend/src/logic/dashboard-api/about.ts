@@ -28,6 +28,8 @@ export class DashAboutService extends DashAxiosService {
         'start_date',
         'title',
       ),
+
+      nested('skills', undefined, '*', 'abilities.*'),
     ]
 
     return this.axios.get(`/items/about_me?${fields(params)}`)

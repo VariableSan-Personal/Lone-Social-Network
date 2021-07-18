@@ -15,7 +15,8 @@
     "forceConsistentCasingInFileNames": true,
     "types": ["vite/client", "vite-plugin-vue-layouts/client", "@types/jest"],
     "paths": {
-      "~/*": ["src/*"]
+      "~/*": ["src/*"],
+      "public/*": ["public/*"]
     }
   },
   "exclude": ["dist", "node_modules"]

@@ -14,12 +14,14 @@ import WindiCSS from 'vite-plugin-windicss'
 
 const PATH = {
   src: path.resolve(__dirname, './src'),
+  public: path.resolve(__dirname, './public'),
 }
 
 export default defineConfig({
   resolve: {
     alias: {
       '~/': `${PATH.src}/`,
+      'public/': `${PATH.public}/`,
     },
   },
   plugins: [

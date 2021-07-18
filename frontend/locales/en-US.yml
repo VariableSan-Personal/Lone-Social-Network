@@ -1,11 +1,21 @@
 about:
+  fullname: Nursultan Nurgaliyev
   now: Present
+  skills: Skills
+  education: Education
+  experience: Experience
 back: Back to the main page
 email: E-mail
+level: level
 header:
   account-settings: Account settings
   logout: Logout
   signed-in: Signed in as
+footer:
+  links: Links
+  resume-design: Resume design
+  home-page-design: Home page design
+  dashboard: Dashboard
 intro:
   hi: Hi, {name}!
 login:

@@ -1,23 +1,36 @@
 <script setup lang='ts'>
-import { ref, watch } from 'vue'
-import { home } from '~/logic'
+import { useI18n } from 'vue-i18n'
 
-const githubUrl = ref('')
+const { t } = useI18n()
 
-watch(home, () => {
-  const link = home.value?.social_links.find(link => link.title.toLowerCase() === 'github')
-
-  githubUrl.value = link?.href || ''
-})
+const links = [
+  {
+    href: 'https://universal-resume.netlify.app/',
+    title: 'resume-design',
+  },
+  {
+    href: 'https://gambolthemes.net/workwise-new/my-profile-feed.html',
+    title: 'home-page-design',
+  },
+  {
+    href: 'https://directus.io/',
+    title: 'dashboard',
+  },
+]
 </script>
 
 <template>
   <footer class="footer">
-    <div class="container">
-      <p class="w-full text-center py-4 dark:text-gray-600">
-        Copyright © 2021
-        <a class="focus:outline-none focus:underline hover:underline" :href="githubUrl">JudgementHC</a>
-      </p>
+    <div class="container flex items-center justify-center py-8">
+      <h3 class="mr-4 dark:text-gray-300">
+        {{ t('footer.links') }}:
+      </h3>
+
+      <ol class="flex">
+        <li v-for="(link, index) in links" :key="index" class="not-last:mr-4 dark:text-gray-600">
+          <a class="link--default" target="_blank" :href="link.href">{{ t(`footer.${link.title}`) }}</a>
+        </li>
+      </ol>
     </div>
   </footer>
 </template>

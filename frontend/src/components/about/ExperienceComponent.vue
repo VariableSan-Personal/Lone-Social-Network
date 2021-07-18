@@ -15,15 +15,13 @@ defineProps({
 </script>
 
 <template>
-  <section>
-    <h2 class="mb-4 font-bold text-gray-500 dark:text-gray-400 tracking-widest uppercase">
-      Experience
+  <section class="about__section">
+    <h2 class="about__headline">
+      {{ t('about.experience') }}
     </h2>
 
-    <div v-for="exp in experience" :key="exp.id" class="mb-8">
-      <h3
-        class="text-lg font-semibold text-gray-700 dark:text-white leading-snug"
-      >
+    <div v-for="exp in experience" :key="exp.id" class="about__block">
+      <h3 class="about__title">
         {{ exp.company_name }}
       </h3>
 
@@ -33,11 +31,15 @@ defineProps({
         {{ getMonthAndYear(exp.start_date, locale, t) }} - {{ getMonthAndYear(exp.end_date, locale, t) }} | {{ getTranslate(locale, exp, 'position_name') }}
       </p>
 
-      <p
-        class="whitespace-pre-line text-md text-gray-700 dark:text-white leading-normal"
-      >
-        {{ getTranslate(locale, exp, 'description') }}
-      </p>
+      <ul class="pl-4">
+        <li
+          v-for="(item, index) in getTranslate(locale, exp, 'description').split('\n')"
+          :key="index"
+          class="text-md text-gray-700 leading-normal list-disc not-last:mb-2 dark:text-white"
+        >
+          {{ item }}
+        </li>
+      </ul>
     </div>
   </section>
 </template>

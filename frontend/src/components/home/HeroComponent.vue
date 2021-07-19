@@ -1,9 +1,11 @@
 <script lang="ts" setup>
 import { isEmpty } from 'lodash'
 import { getCurrentInstance, onBeforeMount, reactive, ref, watch } from 'vue'
+import { useScreen } from 'vue-screen'
 import { getAsset, home, imageLoader, user } from '~/logic'
 
 /* ==================== variables START ==================== */
+const screen = useScreen()
 const hero = ref<HTMLElement>()
 const fileInput = ref<HTMLElement>()
 
@@ -88,6 +90,24 @@ function saveLastValue() {
   lastBgPosition.y = y
   lastImageSrc.value = imageSrc.value
 }
+
+function getAdjustedImage() {
+  let percent = bgPosition.percentY()
+  const { width } = screen
+
+  if (width < 320)
+    percent -= 30
+  else if (width < 640)
+    percent -= 20
+  else if (width < 768)
+    percent -= 25
+  else if (width < 1024)
+    percent -= 10
+  else if (width < 1280)
+    percent -= 5
+
+  return percent
+}
 /* ==================== helpers END ==================== */
 </script>
 
@@ -96,7 +116,7 @@ function saveLastValue() {
     ref="hero"
     class="hero bg--default"
     :class="{ 'active:cursor-move': settingMode }"
-    :style="[`background-position: 0 ${bgPosition.percentY()}%`, `background-image: url(${imageSrc})`]"
+    :style="[`background-position: 0 ${getAdjustedImage()}%`, `background-image: url(${imageSrc})`]"
     @mousemove="onMouseMove"
     @mousedown="onMouseDown"
     @mouseup="bgDrag = false"

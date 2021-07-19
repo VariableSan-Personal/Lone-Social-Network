@@ -1,7 +1,10 @@
 <script setup lang='ts'>
 import { isEmpty } from 'lodash'
 import { getCurrentInstance, onBeforeMount, ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { user, imageLoader, getAsset, home } from '~/logic'
+
+const { t } = useI18n()
 
 const imageSrc = ref('')
 
@@ -48,7 +51,7 @@ function initValues() {
     <input ref="fileInput" class="hidden" type="file" @change="imageLoader($event, onFileChange)" />
 
     <div class="px-2 py-4 text-center text-lg">
-      <p>{{ home?.admin_info.first_name }} {{ home?.admin_info.last_name }}</p>
+      <p>{{ t('about.fullname') }}</p>
     </div>
 
     <SocialLinks></SocialLinks>

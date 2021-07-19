@@ -43,7 +43,7 @@ onMounted(() => {
     class="header fixed top-0 left-0 z-50 w-full h-auto py-2 bg-cool-gray-50 dark:bg-cool-gray-700 shadow-2xl"
   >
     <div class="container">
-      <div class="flex flex-wrap">
+      <div class="flex flex-wrap justify-between">
         <div class="header__logo">
           <button class="mr-3 focus:outline-none sm:hidden" @click="drawer = !drawer">
             <cil:hamburger-menu></cil:hamburger-menu>
@@ -61,13 +61,15 @@ onMounted(() => {
                 class="link--default header__link"
                 exact-active-class="after:opacity-100"
                 :to="link.href"
-              >{{ t(link.title) }}</router-link>
+              >
+                {{ t(link.title) }}
+              </router-link>
             </li>
           </ul>
         </nav>
 
         <div class="header__user">
-          <div class="flex items-center mr-5">
+          <div class="flex items-center">
             <button class="btn" @click="toggleDark">
               <span>
                 <carbon-moon v-if="isDark" />
@@ -88,8 +90,12 @@ onMounted(() => {
               <button
                 class="btn"
                 @click="loginWindow = true; currentTab = 1"
-              >{{ t('login.sign-up') }}</button>
-              <button class="btn" @click="loginWindow = true; currentTab = 0">{{ t('login.login') }}</button>
+              >
+                {{ t('login.sign-up') }}
+              </button>
+              <button class="btn" @click="loginWindow = true; currentTab = 0">
+                {{ t('login.login') }}
+              </button>
             </div>
           </div>
 
@@ -124,17 +130,11 @@ onMounted(() => {
   }
 
   &__logo {
-    @apply flex w-full;
-    @screen sm {
-      @apply w-1/3;
-    }
+    @apply flex w-1/3;
   }
 
   &__user {
-    @apply hidden justify-end w-1/3;
-    @screen sm {
-      @apply flex;
-    }
+    @apply flex justify-end w-1/3;
   }
 
   &__nav {

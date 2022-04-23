@@ -3,7 +3,8 @@
   "useTabs": false,
   "arrowParens": "avoid",
   "singleQuote": true,
-  "trailingComma": "none",
+  "trailingComma": "all",
   "semi": false,
-  "proseWrap": "preserve"
+  "proseWrap": "preserve",
+  "bracketSameLine": false
 }

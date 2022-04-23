@@ -14,6 +14,7 @@
     "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
     "types": ["vite/client", "vite-plugin-vue-layouts/client", "@types/jest"],
+    "jsx": "preserve",
     "paths": {
       "~/*": ["src/*"],
       "public/*": ["public/*"]

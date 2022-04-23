@@ -35,7 +35,7 @@ errors:
   bad-request: There was a problem with the connection
 password: Password
 portfolio:
-  date: Created date
+  date: Release date
   description: Description
   projects: Portfolio projects
   technologies: Technologies

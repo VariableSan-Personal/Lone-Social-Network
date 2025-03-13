@@ -21,12 +21,6 @@ export default defineNuxtConfig({
 	],
 
 	css: ['~/assets/css/main.css'],
-	postcss: {
-		plugins: {
-			'postcss-nested': {},
-			'postcss-custom-media': {},
-		},
-	},
 
 	future: {
 		compatibilityVersion: 4,
@@ -36,11 +30,26 @@ export default defineNuxtConfig({
 
 	i18n: {
 		locales: [
-			{ code: 'en', files: ['en-US.yml'] },
-			{ code: 'ru', files: ['ru-RU.yml'] },
+			{ code: 'en', file: 'en-US.yml' },
+			{ code: 'ru', file: 'ru-RU.yml' },
 		],
 		langDir: './locales',
 		defaultLocale: 'en',
 		strategy: 'no_prefix',
+	},
+
+	ui: {
+		theme: {
+			colors: ['primary', 'secondary', 'info', 'success', 'warning', 'error', 'neutral'],
+		},
+	},
+
+	icon: {
+		customCollections: [
+			{
+				prefix: 'custom',
+				dir: './public',
+			},
+		],
 	},
 })

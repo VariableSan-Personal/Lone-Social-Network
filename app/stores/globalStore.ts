@@ -1,18 +1,28 @@
 import { defineStore } from 'pinia'
 
 export const useGlobalStore = defineStore('global', () => {
-	const isDark = useDark({
-		selector: 'html',
-		attribute: 'class',
-		valueDark: 'dark',
-		valueLight: 'light',
-		initialValue: 'auto',
+	const colorMode = useColorMode()
+
+	const isDark = computed({
+		get() {
+			return colorMode.value === 'dark'
+		},
+		set() {
+			colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
+		},
 	})
 
-	const toggleDark = useToggle(isDark)
+	const drawer = ref(false)
+	const loading = ref(false)
+
+	const toggleDark = () => {
+		isDark.value = !isDark.value
+	}
 
 	return {
 		isDark,
+		drawer,
+		loading,
 
 		toggleDark,
 	}

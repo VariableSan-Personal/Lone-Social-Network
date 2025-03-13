@@ -1,2 +1,0 @@
-pm2 start --name=dashboard npx -- directus start
-pm2 start --name=frontend npm -- run preview

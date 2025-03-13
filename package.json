@@ -1,30 +1,66 @@
 {
-  "name": "lone-social-network",
-  "version": "1.0.0",
-  "description": "",
+  "private": true,
   "scripts": {
-    "package:install": "npm i -g pnpm",
-    "frontend": "cd frontend && pnpm dev",
-    "dashboard": "cd dashboard && npx directus start",
-    "dev": "concurrently \"npm run frontend:dev\" \"npm run dashboard\"",
-    "build": "cd frontend && pnpm build",
-    "serve": "npm run frontend:serve && npm run dashboard",
-    "heroku-postbuild": "npm run package:install && npm run build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JudgementHC/Lone-Social-Network.git"
-  },
-  "author": "Nursultan",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/JudgementHC/Lone-Social-Network/issues"
-  },
-  "homepage": "https://github.com/JudgementHC/Lone-Social-Network#readme",
-  "devDependencies": {
-    "concurrently": "^6.1.0"
+    "dev": "vite --port 3333",
+    "build": "cross-env NODE_ENV=production vite-ssg build",
+    "preview": "vite preview",
+    "preview-https": "serve dist",
+    "test:unit": "jest ./tests/unit"
   },
   "dependencies": {
-    "node-cmd": "^4.0.0"
+    "@iconify/iconify": "^1.0.7",
+    "@types/js-cookie": "^2.2.6",
+    "@types/lodash": "^4.14.170",
+    "@vuelidate/core": "^2.0.0-alpha.18",
+    "@vuelidate/validators": "^2.0.0-alpha.15",
+    "@vueuse/core": "^4.11.1",
+    "@vueuse/head": "^0.5.1",
+    "axios": "^0.21.1",
+    "js-cookie": "^2.2.1",
+    "lodash": "^4.17.21",
+    "mitt": "^3.0.0",
+    "nprogress": "^0.2.0",
+    "prism-theme-vars": "^0.2.2",
+    "vue": "^3.0.11",
+    "vue-i18n": "^9.1.6",
+    "vue-router": "^4.0.8",
+    "vue-screen": "^2.0.3-alpha.3"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.6.5",
+    "@iconify/json": "^1.1.350",
+    "@intlify/vite-plugin-vue-i18n": "^2.1.2",
+    "@types/jest": "^26.0.23",
+    "@types/nprogress": "^0.2.0",
+    "@types/vuelidate": "^0.7.14",
+    "@typescript-eslint/eslint-plugin": "^4.25.0",
+    "@vitejs/plugin-vue": "^1.2.2",
+    "@vue/compiler-sfc": "^3.0.11",
+    "@vue/server-renderer": "^3.0.11",
+    "@vue/test-utils": "^2.0.0-rc.6",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.27.0",
+    "https-localhost": "^4.6.5",
+    "jest": "^26.0.0",
+    "markdown-it-prism": "^2.1.6",
+    "pnpm": "^5.18.9",
+    "prettier": "^2.3.0",
+    "pug": "^3.0.2",
+    "rollup": "2.0.0",
+    "sass": "^1.34.0",
+    "ts-jest": "^26.0.0",
+    "typescript": "^4.3.2",
+    "vite": "^2.3.4",
+    "vite-plugin-components": "^0.8.4",
+    "vite-plugin-icons": "^0.4.0",
+    "vite-plugin-md": "^0.6.7",
+    "vite-plugin-pages": "^0.9.8",
+    "vite-plugin-purge-icons": "^0.7.0",
+    "vite-plugin-pwa": "^0.6.5",
+    "vite-plugin-vue-layouts": "^0.2.2",
+    "vite-plugin-windicss": "^0.11.8",
+    "vite-ssg": "^0.9.3",
+    "vue-jest": "^5.0.0-alpha.9",
+    "vue-template-compiler": "2.6.12"
   }
 }

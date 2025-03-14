@@ -2,6 +2,12 @@ import { fileURLToPath, URL } from 'node:url'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+	app: {
+		head: {
+			link: [{ rel: 'icon', type: 'image/png', href: 'pwa-512x512.png' }],
+		},
+	},
+
 	devtools: { enabled: false },
 
 	alias: {

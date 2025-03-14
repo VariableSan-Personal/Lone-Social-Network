@@ -1,10 +1,12 @@
 <script setup lang="ts"></script>
 
 <template>
-	<div class="relative flex min-h-screen w-full flex-col">
+	<div class="relative flex min-h-screen w-full flex-col pt-11 sm:pt-14">
 		<Header />
 
-		<main class="mb-2 flex-1 sm:pt-14">
+		<Drawer />
+
+		<main class="flex-1">
 			<slot></slot>
 		</main>
 	</div>

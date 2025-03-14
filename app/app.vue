@@ -5,6 +5,7 @@
 	const lang = computed(() => locales[locale.value].code)
 	const dir = computed(() => locales[locale.value].dir)
 
+	// TODO: setup meta tags
 	useHead({
 		htmlAttrs: {
 			lang,

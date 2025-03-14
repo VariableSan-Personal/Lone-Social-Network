@@ -26,6 +26,12 @@ export default defineNuxtConfig({
 		'@vueuse/nuxt',
 	],
 
+	runtimeConfig: {
+		public: {
+			baseUrl: process.env.BASE_URL,
+		},
+	},
+
 	css: ['~/assets/css/main.css'],
 
 	future: {

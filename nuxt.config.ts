@@ -17,13 +17,11 @@ export default defineNuxtConfig({
 	modules: [
 		'@nuxt/ui',
 		'@nuxt/eslint',
-		'@nuxt/fonts',
 		'@nuxt/icon',
-		'@nuxt/image',
-		'@nuxt/scripts',
 		'@nuxtjs/i18n',
 		'@pinia/nuxt',
 		'@vueuse/nuxt',
+		'@crazydos/nuxt-msw',
 	],
 
 	runtimeConfig: {
@@ -74,4 +72,6 @@ export default defineNuxtConfig({
 			},
 		],
 	},
+
+	msw: {},
 })

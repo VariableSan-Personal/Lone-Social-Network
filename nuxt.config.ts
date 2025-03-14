@@ -30,10 +30,9 @@ export default defineNuxtConfig({
 
 	i18n: {
 		locales: [
-			{ code: 'en', file: 'en-US.yml' },
-			{ code: 'ru', file: 'ru-RU.yml' },
+			{ code: 'ru', file: 'ru-RU.ts' },
+			{ code: 'en', file: 'en-US.ts' },
 		],
-		langDir: './locales',
 		defaultLocale: 'en',
 		strategy: 'no_prefix',
 	},

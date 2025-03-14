@@ -1,21 +1,18 @@
 <script setup lang="ts">
-	// import LoneSocialLogo from 'public/lone-social-logo.svg?raw'
 	import { useI18n } from 'vue-i18n'
 	import { LINKS } from '~/shared'
 
 	const { toggleDark, drawer, isDark } = useGlobalStore()
-	const { t, availableLocales, locale } = useI18n()
+	const { t, availableLocales, setLocale, locale } = useI18n()
 
 	const toggleLocale = () => {
-		console.info('here')
-		locale.value = availableLocales.find((el) => el !== locale.value) || 'en'
+		const newLocale = availableLocales.find((el) => el !== locale.value) || 'en'
+		setLocale(newLocale)
 	}
 </script>
 
 <template>
-	<header
-		class="bg-cool-gray-50 dark:bg-cool-gray-700 fixed top-0 left-0 z-50 h-auto w-full py-2 shadow-2xl"
-	>
+	<header class="fixed top-0 left-0 z-50 h-auto w-full py-2 shadow-2xl">
 		<UContainer>
 			<div class="flex flex-wrap justify-between">
 				<div>
@@ -23,7 +20,7 @@
 						<Icon name="lucide:align-justify" />
 					</button>
 
-					<router-link to="/" class="link--default header__icon">
+					<router-link :to="{ name: 'index' }" class="link--default header__icon">
 						<div class="flex h-full w-full items-center">
 							<Icon name="custom:lone-social-logo" size="32" />
 						</div>

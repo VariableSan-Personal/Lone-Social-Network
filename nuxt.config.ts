@@ -32,6 +32,17 @@ export default defineNuxtConfig({
 		compatibilityVersion: 4,
 	},
 
+	nitro: {
+		esbuild: {
+			options: {
+				target: 'esnext',
+			},
+		},
+		prerender: {
+			routes: ['/', '/about'],
+		},
+	},
+
 	compatibilityDate: '2024-11-27',
 
 	i18n: {

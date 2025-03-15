@@ -4,6 +4,22 @@
 	const { $api } = useNuxtApp()
 	const db = getFirestore()
 
+	const { data: projects } = await useAsyncData('projects', async () => {
+		const projectsCollection = collection(db, 'projects')
+		const projectsSnapshot = await getDocs(projectsCollection)
+
+		const projectsList: Record<string, string>[] = []
+
+		projectsSnapshot.forEach((doc) => {
+			projectsList.push({
+				id: doc.id,
+				...doc.data(),
+			})
+		})
+
+		return projectsList
+	})
+
 	const createProject = async () => {
 		await setDoc(doc(db, 'projects', 'project1'), {
 			title: 'Мой проект',
@@ -49,6 +65,8 @@
 
 <template>
 	<div>
+		<div>Projects: {{ projects }}</div>
+
 		<div class="flex gap-4">
 			<UButton @click="testMsw">Test MSW</UButton>
 			<UButton @click="createProject">Create project</UButton>

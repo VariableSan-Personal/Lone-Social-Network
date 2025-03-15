@@ -73,5 +73,7 @@ export default defineNuxtConfig({
 		],
 	},
 
-	msw: {},
+	msw: {
+		enable: process.env.MOCK_SERVICE_WORKER === 'true',
+	},
 })

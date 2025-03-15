@@ -1,11 +1,14 @@
 <script setup lang="ts">
-	const { data } = await useAsyncData('facts', () => useAPIFetch('/fact'))
+	const { $api } = useNuxtApp()
+
+	onMounted(async () => {
+		const data = await $api('/api/user')
+		console.info(data)
+	})
 </script>
 
 <template>
 	<div>
-		{{ data }}
-
 		<!-- <HomeHero /> -->
 
 		<!-- <section class="pb-12">

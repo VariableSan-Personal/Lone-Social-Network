@@ -1,40 +1,45 @@
 {
-	"name": "nuxt-app",
-	"private": true,
-	"type": "module",
-	"scripts": {
-		"build": "nuxt build",
-		"dev": "nuxt dev",
-		"generate": "nuxt generate",
-		"preview": "nuxt preview",
-		"postinstall": "nuxt prepare",
-		"lint": "eslint .",
-		"lint:fix": "eslint --fix .",
-		"prettier": "prettier --write .",
-		"format": "npm-run-all -p lint:fix prettier"
-	},
-	"dependencies": {
-		"@iconify-json/lucide": "^1.2.29",
-		"@nuxt/icon": "^1.11.0",
-		"@nuxt/ui": "^3.0.0",
-		"@nuxtjs/i18n": "^9.3.1",
-		"@pinia/nuxt": "^0.10.1",
-		"@unhead/vue": "^2.0.0-rc.8",
-		"@vueuse/nuxt": "^13.0.0",
-		"nuxt": "^3.16.0",
-		"pinia": "^3.0.1"
-	},
-	"devDependencies": {
-		"@crazydos/nuxt-msw": "^1.0.2",
-		"@nuxt/eslint": "^1.2.0",
-		"eslint": "^9.22.0",
-		"eslint-plugin-prettier": "^5.2.1",
-		"msw": "^2.7.3",
-		"npm-run-all": "^4.1.5",
-		"prettier": "^3.4.2",
-		"prettier-plugin-organize-imports": "^4.1.0",
-		"prettier-plugin-tailwindcss": "^0.6.9",
-		"typescript": "^5.8.2",
-		"vue-tsc": "^2.1.10"
-	}
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "prettier": "prettier --write .",
+    "format": "npm-run-all -p lint:fix prettier"
+  },
+  "dependencies": {
+    "@iconify-json/lucide": "^1.2.29",
+    "@nuxt/icon": "^1.11.0",
+    "@nuxt/ui": "^3.0.0",
+    "@nuxtjs/i18n": "^9.3.1",
+    "@pinia/nuxt": "^0.10.1",
+    "@unhead/vue": "^2.0.0-rc.8",
+    "@vueuse/nuxt": "^13.0.0",
+    "nuxt": "^3.16.0",
+    "pinia": "^3.0.1"
+  },
+  "devDependencies": {
+    "@crazydos/nuxt-msw": "^1.0.2",
+    "@nuxt/eslint": "^1.2.0",
+    "eslint": "^9.22.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "msw": "^2.7.3",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.4.2",
+    "prettier-plugin-organize-imports": "^4.1.0",
+    "prettier-plugin-tailwindcss": "^0.6.9",
+    "typescript": "^5.8.2",
+    "vue-tsc": "^2.1.10"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
+  }
 }

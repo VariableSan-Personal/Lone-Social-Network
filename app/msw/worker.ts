@@ -17,7 +17,7 @@ export default defineNuxtMswWorkerOption(() => {
 		handlers,
 		workerOptions: {
 			// ...you can pass options to worker.start()
-			// onUnhandledRequest: 'bypass',
+			onUnhandledRequest: 'bypass',
 		},
 		onWorkerStarted(worker, nuxtApp) {
 			// Module will setup worker when nuxt run client plugin

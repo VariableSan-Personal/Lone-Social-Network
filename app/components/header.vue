@@ -15,7 +15,7 @@
 	<header class="fixed top-0 left-0 z-10 w-full py-2 shadow-2xl">
 		<UContainer>
 			<div class="flex flex-wrap items-center justify-between">
-				<div class="flex items-center space-x-4">
+				<div class="flex items-center gap-x-4">
 					<UButton
 						variant="link"
 						class="focus:outline-none sm:hidden"
@@ -24,23 +24,23 @@
 						<Icon name="lucide:align-justify" />
 					</UButton>
 
-					<router-link :to="{ name: 'index' }" class="link--default header__icon">
+					<NuxtLink :to="{ name: 'index' }" class="link--default header__icon">
 						<div class="flex h-full w-full items-center">
 							<Icon class="text-3xl sm:text-4xl" name="custom:lone-social-logo" />
 						</div>
-					</router-link>
+					</NuxtLink>
 				</div>
 
 				<nav class="hidden sm:block">
-					<ul class="flex items-center space-x-4">
+					<ul class="flex items-center gap-x-4">
 						<li v-for="(link, index) in LINKS" :key="index">
-							<router-link
+							<NuxtLink
 								class="link--default header__link"
 								exact-active-class="after:opacity-100"
 								:to="link.href"
 							>
 								{{ t(link.title) }}
-							</router-link>
+							</NuxtLink>
 						</li>
 					</ul>
 				</nav>

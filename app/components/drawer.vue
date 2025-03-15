@@ -14,13 +14,13 @@
 		<div class="my-4 px-4">
 			<ul>
 				<li v-for="(link, index) in LINKS" :key="index" class="space-y-2">
-					<router-link
+					<NuxtLink
 						tabindex="-1"
 						class="duration block rounded-lg px-2 py-2 transition-colors hover:bg-gray-200 hover:font-bold hover:text-black dark:text-gray-100 dark:hover:bg-gray-300"
 						:to="link.href"
 					>
 						{{ t(link.title) }}
-					</router-link>
+					</NuxtLink>
 				</li>
 			</ul>
 		</div>

@@ -1,14 +1,61 @@
 <script setup lang="ts">
-	const { $api } = useNuxtApp()
+	import { collection, doc, getDoc, getDocs, getFirestore, setDoc } from 'firebase/firestore'
 
-	onMounted(async () => {
+	const { $api } = useNuxtApp()
+	const db = getFirestore()
+
+	const createProject = async () => {
+		await setDoc(doc(db, 'projects', 'project1'), {
+			title: 'Мой проект',
+			description: 'Описание проекта',
+			createdAt: new Date().toISOString(),
+			tags: ['nuxt', 'firebase'],
+			author: {
+				name: 'Нурсултан',
+				email: 'user@example.com',
+			},
+		})
+	}
+
+	const fetchProjectById = async () => {
+		const docRef = doc(db, 'projects', 'project1')
+		const docSnap = await getDoc(docRef)
+
+		if (docSnap.exists()) {
+			console.log(docSnap.data())
+		}
+	}
+
+	const fetchAllProjects = async () => {
+		const projectsCollection = collection(db, 'projects')
+		const projectsSnapshot = await getDocs(projectsCollection)
+
+		const projects: Record<string, string>[] = []
+		projectsSnapshot.forEach((doc) => {
+			projects.push({
+				id: doc.id,
+				...doc.data(),
+			})
+		})
+
+		console.log(projects)
+	}
+
+	const testMsw = async () => {
 		const data = await $api('/api/user')
 		console.info(data)
-	})
+	}
 </script>
 
 <template>
 	<div>
+		<div class="flex gap-4">
+			<UButton @click="testMsw">Test MSW</UButton>
+			<UButton @click="createProject">Create project</UButton>
+			<UButton @click="fetchProjectById">Fetch project by id</UButton>
+			<UButton @click="fetchAllProjects">Fetch all projects</UButton>
+		</div>
+
 		<!-- <HomeHero /> -->
 
 		<!-- <section class="pb-12">

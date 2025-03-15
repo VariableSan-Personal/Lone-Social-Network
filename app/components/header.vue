@@ -12,7 +12,7 @@
 </script>
 
 <template>
-	<header class="fixed top-0 left-0 z-10 w-full py-2 shadow-2xl">
+	<header class="header fixed top-0 left-0 z-10 w-full py-2 shadow-2xl">
 		<UContainer>
 			<div class="flex flex-wrap items-center justify-between">
 				<div class="flex items-center gap-x-4">
@@ -63,3 +63,9 @@
 		</UContainer>
 	</header>
 </template>
+
+<style scoped>
+	.header {
+		background-color: var(--ui-bg);
+	}
+</style>

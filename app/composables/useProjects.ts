@@ -1,5 +1,5 @@
 import { addDoc, collection, getDocs, getFirestore } from 'firebase/firestore'
-import { COLLECTIONS_KEYS, type Project } from '~/shared'
+import { COLLECTIONS_KEYS, firestoreConverter, type Project } from '~/shared'
 
 export function useProjects() {
 	const db = getFirestore()
@@ -10,15 +10,11 @@ export function useProjects() {
 		error.value = null
 
 		try {
-			const projectsCollection = collection(db, COLLECTIONS_KEYS.PROJECTS)
-			const projectsSnapshot = await getDocs(projectsCollection)
-			return projectsSnapshot.docs.map(
-				(doc) =>
-					({
-						id: doc.id,
-						...doc.data(),
-					}) as Project
+			const projectsCollection = collection(db, COLLECTIONS_KEYS.PROJECTS).withConverter(
+				firestoreConverter<Project>()
 			)
+			const projectsSnapshot = await getDocs(projectsCollection)
+			return projectsSnapshot.docs.map((doc) => doc.data())
 		} catch (err) {
 			error.value = err instanceof Error ? err : new Error(String(err))
 			throw error.value

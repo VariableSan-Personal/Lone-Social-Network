@@ -43,14 +43,6 @@ export default defineI18nLocale(() => {
 			home: 'Главная',
 		},
 		password: 'Пароль',
-		portfolio: {
-			date: 'Дата создания',
-			description: 'Описание',
-			projects: 'Портфолио проекты',
-			technologies: 'Технологии',
-			title: 'Название проекта',
-			visit: 'Посетить сайт',
-		},
 		validation: {
 			'min-password-length': 'Минимальная длина пароля - {length}',
 			'non-correct-data': 'Неправильное имя пользователя или пароль',

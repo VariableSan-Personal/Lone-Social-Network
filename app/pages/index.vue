@@ -5,13 +5,12 @@
 </script>
 
 <template>
-	<div class="space-y-4">
-		<KeepAlive>
-			<ul>
-				<li v-for="item in projects" :key="item.id">
-					{{ item }}
-				</li>
-			</ul>
-		</KeepAlive>
-	</div>
+	<UContainer>
+		<section class="space-y-4">
+			<h2 class="text-2xl font-bold">Projects</h2>
+			<KeepAlive>
+				<HomeProjects :projects="projects" />
+			</KeepAlive>
+		</section>
+	</UContainer>
 </template>

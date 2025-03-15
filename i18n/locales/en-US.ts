@@ -40,13 +40,14 @@ export default defineI18nLocale(() => {
 			'return-home': 'Return to the home page',
 		},
 		password: 'Password',
-		portfolio: {
+		project: {
 			date: 'Release date',
 			description: 'Description',
 			projects: 'Portfolio projects',
 			technologies: 'Technologies',
 			title: 'Project title',
 			visit: 'Visit the website',
+			'view-project': 'View Project',
 		},
 		validation: {
 			'min-password-length': 'Min password length - {length}',

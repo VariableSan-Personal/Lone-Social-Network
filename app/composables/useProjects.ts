@@ -1,12 +1,5 @@
-import {
-	collection,
-	doc,
-	getDoc,
-	getDocs,
-	getFirestore,
-	setDoc,
-	type DocumentData,
-} from 'firebase/firestore'
+import { addDoc, collection, getDocs, getFirestore } from 'firebase/firestore'
+import { COLLECTIONS_KEYS, type Project } from '~/shared'
 
 export function useProjects() {
 	const db = getFirestore()
@@ -17,52 +10,27 @@ export function useProjects() {
 		error.value = null
 
 		try {
-			const projectsCollection = collection(db, 'projects')
+			const projectsCollection = collection(db, COLLECTIONS_KEYS.PROJECTS)
 			const projectsSnapshot = await getDocs(projectsCollection)
-
-			const projects: Record<string, unknown>[] = []
-			projectsSnapshot.forEach((doc) => {
-				projects.push({
-					id: doc.id,
-					...doc.data(),
-				})
-			})
-
-			return projects
+			return projectsSnapshot.docs.map(
+				(doc) =>
+					({
+						id: doc.id,
+						...doc.data(),
+					}) as Project
+			)
 		} catch (err) {
 			error.value = err instanceof Error ? err : new Error(String(err))
 			throw error.value
 		}
 	}
 
-	async function fetchProjectById(id: string) {
+	async function addProject(projectData: Omit<Project, 'id'>) {
 		error.value = null
 
 		try {
-			const docRef = doc(db, 'projects', id)
-			const docSnap = await getDoc(docRef)
-
-			if (docSnap.exists()) {
-				return {
-					id: docSnap.id,
-					...docSnap.data(),
-				}
-			}
-
-			return null
-		} catch (err) {
-			error.value = err instanceof Error ? err : new Error(String(err))
-			throw error.value
-		}
-	}
-
-	async function createProject(projectData: DocumentData) {
-		error.value = null
-
-		try {
-			const projectId = projectData.id || 'project' + Date.now()
-			await setDoc(doc(db, 'projects', projectId), projectData)
-			return projectId
+			const docRef = await addDoc(collection(db, COLLECTIONS_KEYS.PROJECTS), projectData)
+			console.log('Created a document with the ID: ', docRef.id)
 		} catch (err) {
 			error.value = err instanceof Error ? err : new Error(String(err))
 			throw error.value
@@ -72,7 +40,6 @@ export function useProjects() {
 	return {
 		error: readonly(error),
 		fetchAllProjects,
-		fetchProjectById,
-		createProject,
+		addProject,
 	}
 }

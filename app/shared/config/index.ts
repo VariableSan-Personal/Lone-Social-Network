@@ -1,10 +1,2 @@
-export const LINKS = [
-	{
-		title: 'nav-links.home',
-		href: '/',
-	},
-	{
-		title: 'nav-links.about',
-		href: '/about',
-	},
-]
+export { COLLECTIONS_KEYS } from './collection-keys'
+export { LINKS } from './links'

@@ -40,10 +40,10 @@ export default defineI18nLocale(() => {
 			'return-home': 'Return to the home page',
 		},
 		password: 'Password',
-		project: {
+		portfolio: {
 			date: 'Release date',
 			description: 'Description',
-			projects: 'Portfolio projects',
+			projects: 'Projects',
 			technologies: 'Technologies',
 			title: 'Project title',
 			visit: 'Visit the website',

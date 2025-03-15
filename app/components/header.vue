@@ -24,10 +24,11 @@
 						<Icon name="lucide:align-justify" />
 					</UButton>
 
-					<NuxtLink :to="{ name: 'index' }" class="link--default header__icon">
-						<div class="flex h-full w-full items-center">
-							<Icon class="text-3xl sm:text-4xl" name="custom:lone-social-logo" />
-						</div>
+					<NuxtLink :to="{ name: 'index' }">
+						<Icon
+							class="text-3xl transition hover:opacity-60 sm:text-4xl"
+							name="custom:lone-social-logo"
+						/>
 					</NuxtLink>
 				</div>
 
@@ -35,9 +36,9 @@
 					<ul class="flex items-center gap-x-4">
 						<li v-for="(link, index) in LINKS" :key="index">
 							<NuxtLink
-								class="link--default header__link"
-								exact-active-class="after:opacity-100"
-								:to="link.href"
+								:to="{ name: link.name }"
+								exact-active-class="after:w-full"
+								class="relative py-2 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full"
 							>
 								{{ t(link.title) }}
 							</NuxtLink>

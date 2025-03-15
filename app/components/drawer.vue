@@ -17,7 +17,7 @@
 					<NuxtLink
 						tabindex="-1"
 						class="duration block rounded-lg px-2 py-2 transition-colors hover:bg-gray-200 hover:font-bold hover:text-black dark:text-gray-100 dark:hover:bg-gray-300"
-						:to="link.href"
+						:to="{ name: link.name }"
 					>
 						{{ t(link.title) }}
 					</NuxtLink>

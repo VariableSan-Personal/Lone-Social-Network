@@ -64,12 +64,13 @@
 			</template>
 
 			<template #default>
-				<h3 class="mb-2 text-xl font-semibold">{{ project.title }}</h3>
-				<p class="mb-4 line-clamp-2 text-sm text-gray-500">
+				<h3 class="mb-2 text-2xl font-semibold">{{ project.title }}</h3>
+
+				<p class="mb-4 line-clamp-2 text-gray-500">
 					{{ getDescription(project.translations) }}
 				</p>
 
-				<div class="mb-4 flex flex-wrap gap-2">
+				<div class="flex flex-wrap gap-2">
 					<UBadge
 						v-for="tech in project.technologies"
 						:key="tech"
@@ -91,7 +92,7 @@
 					icon="i-heroicons-arrow-top-right-on-square"
 					icon-right
 				>
-					{{ $t('project.view-project') }}
+					{{ $t('portfolio.view-project') }}
 				</UButton>
 			</template>
 		</UCard>

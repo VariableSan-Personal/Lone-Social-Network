@@ -8,22 +8,16 @@
 
 <template>
 	<div class="space-y-2 lg:space-y-12">
-		<KeepAlive>
-			<HomeHero v-bind="home" />
-		</KeepAlive>
+		<HomeHero class="-mt-2" v-bind="home" />
 
 		<UContainer>
 			<div class="relative flex grid-cols-12 flex-col gap-4 lg:grid">
-				<KeepAlive>
-					<HomeProfileAside v-bind="home" class="col-span-2" />
-				</KeepAlive>
+				<HomeProfileAside v-bind="home" class="col-span-2" />
 				<section class="col-span-10 space-y-4">
 					<h2 class="text-2xl font-bold">
 						{{ $t('portfolio.projects') }}
 					</h2>
-					<KeepAlive>
-						<HomeProjects :projects="projects" />
-					</KeepAlive>
+					<HomeProjects :projects="projects" />
 				</section>
 			</div>
 		</UContainer>

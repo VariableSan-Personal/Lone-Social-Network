@@ -1,5 +1,5 @@
 import { collection, getDocs, getFirestore, limit, orderBy, query } from 'firebase/firestore'
-import { COLLECTIONS_KEYS } from '~/shared'
+import { COLLECTIONS_KEYS, firestoreConverter, type Home } from '~/shared'
 
 export function useHome() {
 	const db = getFirestore()
@@ -10,16 +10,14 @@ export function useHome() {
 		error.value = null
 
 		try {
-			const homeCollection = collection(db, COLLECTIONS_KEYS.HOME)
+			const homeCollection = collection(db, COLLECTIONS_KEYS.HOME).withConverter(
+				firestoreConverter<Home>()
+			)
 			const q = query(homeCollection, orderBy('createdAt', 'desc'), limit(1))
 			const querySnapshot = await getDocs(q)
 
 			if (!querySnapshot.empty) {
-				const doc = querySnapshot.docs[0]!
-				return {
-					id: doc.id,
-					...doc.data(),
-				}
+				return querySnapshot.docs[0]!.data()
 			}
 
 			return null

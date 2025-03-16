@@ -1,11 +1,14 @@
 <script lang="ts" setup>
-	const { home } = defineProps<{ home: any }>()
+	defineProps<
+		Partial<{
+			coverImage: string
+			xAxis: number
+			yAxis: number
+		}>
+	>()
 
 	const screen = useWindowSize()
 	const hero = ref<HTMLElement>()
-
-	const settingMode = ref(false)
-	const imageSrc = ref('')
 
 	const bgPosition = reactive({
 		x: 0,
@@ -23,18 +26,6 @@
 		if (bgDrag.value) bgPosition.y = -(initialMouseOffsetY.value - event.offsetY)
 	}
 
-	const onMouseDown = (event: MouseEvent) => {
-		if (settingMode.value) {
-			initialMouseOffsetY.value = event.offsetY - bgPosition.y
-			bgDrag.value = true
-		}
-	}
-
-	function initValues() {
-		imageSrc.value = home.value?.cover_image
-		bgPosition.y = -(home.value?.y_axis || 0)
-	}
-
 	function getAdjustedImage() {
 		let percent = bgPosition.percentY()
 		const { width } = screen
@@ -47,23 +38,17 @@
 
 		return percent
 	}
-
-	watch(home, () => {
-		initValues()
-	})
 </script>
 
 <template>
 	<div
-		ref="hero"
-		class="relative py-[25%] shadow-lg"
-		:class="{ 'active:cursor-move': settingMode }"
-		:style="[`background-position: 0 ${getAdjustedImage()}%`, `background-image: url(${imageSrc})`]"
+		class="relative py-[15%] bg-cover bg-fixed bg-no-repeat shadow-lg"
+		:style="[
+			`background-position: 0 ${getAdjustedImage()}%`,
+			`background-image: url(${coverImage})`,
+		]"
 		@mousemove="onMouseMove"
-		@mousedown="onMouseDown"
 		@mouseup="bgDrag = false"
 		@mouseleave="bgDrag = false"
-	>
-		<ImageLoader v-if="!imageSrc" size="text-5xl"></ImageLoader>
-	</div>
+	></div>
 </template>

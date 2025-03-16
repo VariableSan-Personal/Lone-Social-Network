@@ -7,7 +7,9 @@ export type SocialLink = {
 export type Home = {
 	id: number
 	coverImage: string
-	x_axis: number
-	y_axis: number
+	email: string
+	xAxis: number
+	yAxis: number
+	profileImage: string
 	socialLinks: SocialLink[]
 }

@@ -6,7 +6,7 @@
 	const { locale } = useI18n()
 
 	const getDescription = (translations: Project['translations']) => {
-		const translation = translations.find((t) => t.languages_code === locale.value)
+		const translation = translations.find((t) => t.languagesCode === locale.value)
 		return translation?.description || translations[0]?.description || ''
 	}
 

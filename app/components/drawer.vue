@@ -9,21 +9,19 @@
 <template>
 	<nav
 		:class="drawer ? 'translate-x-0' : '-translate-x-full'"
-		class="bg-drawer fixed top-0 left-0 z-30 min-h-full w-7/12 transform overflow-scroll py-12 transition-all duration-300 ease-in-out sm:w-64"
+		class="bg-drawer fixed top-0 left-0 z-30 min-h-full w-7/12 transform px-4 py-12 transition-all duration-300 ease-in-out sm:w-64"
 	>
-		<div class="my-4 px-4">
-			<ul>
-				<li v-for="(link, index) in LINKS" :key="index" class="space-y-2">
-					<NuxtLink
-						tabindex="-1"
-						class="duration block rounded-lg px-2 py-2 transition-colors hover:bg-gray-200 hover:font-bold hover:text-black dark:text-gray-100 dark:hover:bg-gray-300"
-						:to="{ name: link.name }"
-					>
-						{{ t(link.title) }}
-					</NuxtLink>
-				</li>
-			</ul>
-		</div>
+		<ul class="space-y-4">
+			<li v-for="(link, index) in LINKS" :key="index">
+				<NuxtLink
+					tabindex="-1"
+					class="duration block rounded-lg p-2 transition-colors hover:bg-gray-200 hover:font-bold hover:text-black dark:text-gray-100 dark:hover:bg-gray-300"
+					:to="{ name: link.name }"
+				>
+					{{ t(link.title) }}
+				</NuxtLink>
+			</li>
+		</ul>
 	</nav>
 
 	<transition

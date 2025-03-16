@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-	<div class="relative flex min-h-screen w-full flex-col pt-11 pb-10 sm:pt-14">
+	<div class="relative flex min-h-screen w-full flex-col pt-24 pb-10">
 		<Header />
 
 		<Drawer />

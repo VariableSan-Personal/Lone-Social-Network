@@ -9,5 +9,5 @@ export type Home = {
 	coverImage: string
 	x_axis: number
 	y_axis: number
-	social_links: SocialLink[]
+	socialLinks: SocialLink[]
 }

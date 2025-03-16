@@ -6,7 +6,7 @@
 
 <template>
 	<UContainer>
-		<div class="relative grid-cols-12 gap-4 lg:grid">
+		<div class="relative flex grid-cols-12 flex-col gap-4 lg:grid">
 			<HomeProfileAside class="col-span-2" />
 
 			<section class="col-span-10 space-y-4">

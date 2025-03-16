@@ -8,11 +8,16 @@
 
 <template>
 	<div class="space-y-2 lg:space-y-12">
-		<HomeHero class="-mt-2" v-bind="home" />
+		<HomeHero />
 
 		<UContainer>
 			<div class="relative flex grid-cols-12 flex-col gap-4 lg:grid">
-				<HomeProfileAside v-bind="home" class="col-span-2" />
+				<HomeProfileAside
+					:profile-image="home?.profileImage"
+					:email="home?.email"
+					:social-links="home?.socialLinks"
+					class="col-span-2"
+				/>
 				<section class="col-span-10 space-y-4">
 					<h2 class="text-2xl font-bold">
 						{{ $t('portfolio.projects') }}

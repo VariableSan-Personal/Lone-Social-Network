@@ -12,7 +12,7 @@
 
 <template>
 	<div
-		class="top-52 left-0 transform rounded-md p-4 shadow-2xl lg:sticky lg:h-64 lg:-translate-y-10 lg:transform-none lg:p-0"
+		class="wrapper top-52 left-0 h-max transform rounded-md p-4 drop-shadow-xl lg:sticky lg:-translate-y-12 lg:transform-none lg:p-0"
 	>
 		<div
 			class="image-cover relative mx-auto h-36 w-36 transform overflow-hidden rounded-full border-5 lg:-mb-20 lg:-translate-y-20"
@@ -43,6 +43,10 @@
 </template>
 
 <style scoped>
+	.wrapper {
+		background-color: var(--ui-bg);
+	}
+
 	.image-cover {
 		background-color: var(--ui-bg);
 	}

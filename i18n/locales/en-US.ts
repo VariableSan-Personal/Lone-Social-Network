@@ -39,6 +39,13 @@ export default defineI18nLocale(() => {
 			'something-went-wrong': 'Something went wrong',
 			'return-home': 'Return to the home page',
 		},
+		home: {
+			banner: {
+				title: 'FullStack Developer',
+				subtitle:
+					'I build modern web applications using Nuxt 3, Node.js, Go and other cutting-edge technologies. Transforming complex ideas into intuitive, user-friendly interfaces.',
+			},
+		},
 		password: 'Password',
 		portfolio: {
 			date: 'Release date',

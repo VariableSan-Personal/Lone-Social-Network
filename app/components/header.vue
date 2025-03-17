@@ -32,32 +32,30 @@
 					</NuxtLink>
 				</div>
 
-				<nav class="hidden sm:block">
-					<ul class="flex items-center gap-x-4">
-						<li v-for="(link, index) in LINKS" :key="index">
-							<NuxtLink
-								:to="{ name: link.name }"
-								exact-active-class="after:w-full"
-								class="relative py-2 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full"
-							>
-								{{ $t(link.title) }}
-							</NuxtLink>
-						</li>
-					</ul>
-				</nav>
+				<div class="flex items-center gap-4">
+					<nav class="hidden sm:block">
+						<ul class="flex items-center gap-4">
+							<li v-for="(link, index) in LINKS" :key="index">
+								<NuxtLink
+									:to="{ name: link.name }"
+									exact-active-class="after:w-full"
+									class="relative py-2 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full"
+								>
+									{{ $t(link.title) }}
+								</NuxtLink>
+							</li>
+						</ul>
+					</nav>
 
-				<div>
 					<div class="flex items-center">
-						<UButton variant="ghost" @click="globalStore.toggleDark()">
-							<ClientOnly>
-								<Icon v-if="globalStore.isDark" name="lucide:moon" />
-								<Icon v-else name="lucide:sun" />
-							</ClientOnly>
-						</UButton>
-
-						<UButton variant="ghost" @click="toggleLocale">
-							<Icon name="lucide:languages" />
-						</UButton>
+						<ClientOnly>
+							<UButton
+								:icon="globalStore.isDark ? 'lucide:moon' : 'lucide:sun'"
+								variant="ghost"
+								@click="globalStore.toggleDark()"
+							/>
+						</ClientOnly>
+						<UButton icon="lucide:languages" variant="ghost" @click="toggleLocale" />
 					</div>
 				</div>
 			</div>

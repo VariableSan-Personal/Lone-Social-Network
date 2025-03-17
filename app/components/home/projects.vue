@@ -15,7 +15,7 @@
 			string,
 			'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'error' | 'neutral'
 		> = {
-			Go: 'success',
+			Go: 'info',
 			Typescript: 'info',
 			'.Net': 'secondary',
 			Java: 'warning',
@@ -43,6 +43,9 @@
 			:key="project.id"
 			as="li"
 			variant="subtle"
+			:ui="{
+				header: 'p-0!',
+			}"
 			class="group overflow-hidden transition-all duration-300 hover:shadow-lg"
 		>
 			<template #header>
@@ -53,13 +56,13 @@
 						class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
 					/>
 
-					<ClientOnly>
-						<div class="absolute top-3 right-3">
-							<UBadge color="neutral" variant="solid" class="bg-black/50 backdrop-blur-sm">
+					<div class="absolute top-3 right-3">
+						<UBadge color="neutral" variant="solid" class="bg-black/50 backdrop-blur-sm">
+							<ClientOnly>
 								{{ $d(new Date(project.date)) }}
-							</UBadge>
-						</div>
-					</ClientOnly>
+							</ClientOnly>
+						</UBadge>
+					</div>
 				</div>
 			</template>
 

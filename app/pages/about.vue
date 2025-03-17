@@ -1,3 +1,3 @@
 <template>
-	<div>about page</div>
+	<UContainer>about page</UContainer>
 </template>

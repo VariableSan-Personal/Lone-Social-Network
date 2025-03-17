@@ -89,6 +89,14 @@ export default defineNuxtConfig({
 		enable: process.env.MOCK_SERVICE_WORKER === 'true',
 	},
 
+	hooks: {
+		close: (nuxt) => {
+			if (!nuxt.options._prepare) {
+				process.exit(0)
+			}
+		},
+	},
+
 	vuefire: {
 		config: {
 			apiKey: process.env.FIREBASE_APIKEY,

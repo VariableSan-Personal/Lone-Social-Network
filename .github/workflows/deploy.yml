@@ -22,9 +22,18 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
 
+      - name: Create .env file
+        run: |
+          echo "NUXT_PUBLIC_API_URL=${{ secrets.NUXT_PUBLIC_API_URL }}" >> .env
+          echo "FIREBASE_API_KEY=${{ secrets.FIREBASE_API_KEY }}" >> .env
+
       - name: Copying files to the server
         run: |
           rsync -avz --delete -e "ssh -i ~/.ssh/id_rsa" . ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.SERVER_PATH }}
+
+      - name: Move .env file to the server
+        run: |
+          scp -i ~/.ssh/id_rsa .env ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.SERVER_PATH }}/.env
 
       - name: Build and restart containers
         run: |

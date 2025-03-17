@@ -33,9 +33,3 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=3001
-    healthcheck:
-      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://localhost:3001"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s

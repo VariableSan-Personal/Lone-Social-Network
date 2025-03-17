@@ -9,17 +9,6 @@ export default defineNuxtConfig({
 	},
 
 	devtools: { enabled: false },
-	experimental: {
-		appManifest: false,
-	},
-	build: {
-		transpile: [],
-	},
-	vite: {
-		vue: {
-			template: {},
-		},
-	},
 
 	alias: {
 		'@': fileURLToPath(new URL('./', import.meta.url)),

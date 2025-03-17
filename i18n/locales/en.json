@@ -1,6 +1,10 @@
 {
   "about": {
-    "fullname": "Nursultan Nurgaliyev"
+    "fullname": "Nursultan Nurgaliyev",
+    "experience": "Experience",
+    "education": "Education",
+    "skills": "Skills",
+    "technology-stack": "Technology Stack"
   },
   "errors": {
     "not-exist": "Page does not exist",

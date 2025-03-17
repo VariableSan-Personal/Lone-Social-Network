@@ -1,12 +1,14 @@
 <script setup lang="ts">
 	import type { Project } from '~/shared'
 
-	defineProps<{ projects?: Project[] }>()
+	withDefaults(defineProps<{ projects?: Project[] }>(), {
+		projects: () => [],
+	})
 
 	const { locale } = useI18n()
 
 	const getDescription = (translations: Project['translations']) => {
-		const translation = translations.find((t) => t.languagesCode === locale.value)
+		const translation = translations.find((t) => t.languageCode === locale.value)
 		return translation?.description || translations[0]?.description || ''
 	}
 
@@ -37,7 +39,7 @@
 </script>
 
 <template>
-	<ul v-if="projects && projects.length" class="grid grid-cols-1 gap-6">
+	<ul v-if="projects.length" class="grid grid-cols-1 gap-6">
 		<UCard
 			v-for="project in projects"
 			:key="project.id"

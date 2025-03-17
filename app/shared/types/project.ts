@@ -1,6 +1,6 @@
 export type Translation = {
 	description: string
-	languagesCode: 'ru' | 'en'
+	languageCode: 'ru' | 'en'
 }
 
 export type Project = {

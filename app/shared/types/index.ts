@@ -1,4 +1,4 @@
-export * from './about-me'
+export * from './about'
 export * from './home'
 export * from './link'
 export * from './login'

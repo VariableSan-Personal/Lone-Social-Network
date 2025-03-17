@@ -13,6 +13,9 @@
 	--ui-neutral: #e5e7eb;
 	--ui-bg: #f9fafb;
 	--ui-text: #1f2937;
+
+	--color-primary: var(--ui-primary);
+	--color-secondary: var(--ui-primary);
 }
 
 .dark {
@@ -25,4 +28,7 @@
 	--ui-neutral: #1e293b;
 	--ui-bg: #0f172a;
 	--ui-text: #e5e7eb;
+
+	--color-primary: var(--ui-primary);
+	--color-secondary: var(--ui-primary);
 }

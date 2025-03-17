@@ -3,7 +3,7 @@
 	import { LINKS } from '~/shared'
 
 	const globalStore = useGlobalStore()
-	const { t, availableLocales, setLocale, locale } = useI18n()
+	const { availableLocales, setLocale, locale } = useI18n()
 
 	const toggleLocale = () => {
 		const newLocale = availableLocales.find((el) => el !== locale.value) || 'en'
@@ -40,7 +40,7 @@
 								exact-active-class="after:w-full"
 								class="relative py-2 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-current after:transition-all after:duration-300 hover:after:w-full"
 							>
-								{{ t(link.title) }}
+								{{ $t(link.title) }}
 							</NuxtLink>
 						</li>
 					</ul>

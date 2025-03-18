@@ -1,6 +1,9 @@
 <script setup lang="ts">
 	import type { Education } from '~/shared'
 
+	const { locale } = useI18n()
+	const dateOption = { year: 'numeric' }
+
 	withDefaults(defineProps<{ education?: Education[] }>(), {
 		education: () => [],
 	})
@@ -12,13 +15,20 @@
 			{{ $t('about.education') }}
 		</h2>
 
-		<div v-for="(edu, index) in education" :key="index">
-			<h3 class="title">
-				{{ edu.title }}
-			</h3>
-			<p>
-				{{ `${edu.startDate} - ${edu.endDate}` }}
-			</p>
+		<div class="block">
+			<div v-for="(edu, index) in education" :key="index">
+				<h3 class="title">
+					{{ edu.title }}
+				</h3>
+				<small>
+					<ClientOnly>
+						{{ `${$d(edu.startDate, dateOption)} - ${$d(edu.endDate, dateOption)}` }}
+					</ClientOnly>
+				</small>
+				<p>
+					{{ edu.translations[locale] }}
+				</p>
+			</div>
 		</div>
 	</section>
 </template>

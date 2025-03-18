@@ -1,7 +1,3 @@
 export * from './about'
 export * from './home'
-export * from './link'
-export * from './login'
 export * from './project'
-export * from './tab'
-export * from './user'

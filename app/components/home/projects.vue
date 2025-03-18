@@ -7,11 +7,6 @@
 
 	const { locale } = useI18n()
 
-	const getDescription = (translations: Project['translations']) => {
-		const translation = translations.find((t) => t.languageCode === locale.value)
-		return translation?.description || translations[0]?.description || ''
-	}
-
 	const getTechColor = (tech: string) => {
 		const colorMap: Record<
 			string,
@@ -72,7 +67,7 @@
 				<h3 class="mb-2 text-2xl font-semibold">{{ project.title }}</h3>
 
 				<p class="mb-4 line-clamp-2 text-gray-500">
-					{{ getDescription(project.translations) }}
+					{{ project.translations[locale] }}
 				</p>
 
 				<div class="flex flex-wrap gap-2">

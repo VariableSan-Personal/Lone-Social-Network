@@ -4,7 +4,8 @@
     "experience": "Experience",
     "education": "Education",
     "skills": "Skills",
-    "technology-stack": "Technology Stack"
+    "technology-stack": "Technology Stack",
+    "self": "About me"
   },
   "errors": {
     "not-exist": "Page does not exist",
@@ -24,5 +25,11 @@
   "nav-links": {
     "home": "Home",
     "about": "About"
+  },
+  "experience": {
+    "present": "Present",
+    "year": "{years} yr",
+    "month": "{months} mos",
+    "lessThanMonth": "less than month"
   }
 }

@@ -1,7 +1,4 @@
-export type Translation = {
-	description: string
-	languageCode: 'ru' | 'en'
-}
+import type { Translation } from './translation'
 
 export type Project = {
 	id: string
@@ -10,7 +7,7 @@ export type Project = {
 	poster: string
 	date: Date
 	technologies: Technologies[]
-	translations: Translation[]
+	translations: Translation
 }
 
 export type Technologies =

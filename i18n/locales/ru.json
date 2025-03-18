@@ -1,11 +1,16 @@
 {
 	"about": {
-		"fullname": "Нургалиев Нурсултан"
+		"fullname": "Нургалиев Нурсултан",
+		"education": "Образование",
+		"experience": "Опыт",
+		"self": "Обо мне",
+		"skills": "Навыки",
+		"technology-stack": "Технологический стек"
 	},
 	"errors": {
 		"not-exist": "Страница не существует",
 		"return-home": "Вернуться на домашнюю страницу",
-		"something-went-wrong": "Что -то пошло не так"
+		"something-went-wrong": "Что-то пошло не так"
 	},
 	"home": {
 		"banner": {
@@ -20,5 +25,11 @@
 	"nav-links": {
 		"about": "Обо мне",
 		"home": "Главная"
+	},
+	"experience": {
+		"lessThanMonth": "Менее месяца",
+		"month": "{months} мес",
+		"present": "Настоящее время",
+		"year": "{years} год"
 	}
 }

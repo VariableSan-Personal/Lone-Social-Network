@@ -24,10 +24,11 @@
 			</h1>
 		</div>
 
-		<div class="grid grid-cols-2 gap-8">
+		<div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
 			<AboutExperience class="about-section" :experience="about?.experience" />
 			<AboutSkill class="about-section" :skills="about?.skills" />
 			<AboutEducation class="about-section" :education="about?.education" />
+			<AboutSelf class="about-section" :self="about?.self" />
 		</div>
 	</UContainer>
 </template>
@@ -36,13 +37,19 @@
 	@reference "@/app/assets/css/main.css";
 
 	.about-section .headline {
-		@apply mb-4 border-t pt-4 text-lg font-bold tracking-widest uppercase;
+		@apply mb-4 border-t pt-4 text-xl font-bold tracking-widest uppercase;
 	}
 	.about-section .title {
-		@apply text-2xl leading-snug font-bold;
+		@apply text-lg leading-snug font-bold;
 	}
 	.about-section small {
 		@apply text-sm;
+	}
+	.about-section li {
+		@apply ml-4 list-disc;
+	}
+	.about-section .block {
+		@apply space-y-4;
 	}
 
 	.initials {

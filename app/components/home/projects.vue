@@ -1,11 +1,16 @@
 <script setup lang="ts">
 	import type { Project } from '~/shared'
 
-	withDefaults(defineProps<{ projects?: Project[] }>(), {
+	const props = withDefaults(defineProps<{ projects?: Project[] }>(), {
 		projects: () => [],
 	})
+	const dateOption = { year: 'numeric' }
 
 	const { locale } = useI18n()
+
+	const sortedProjects = computed(() => {
+		return [...props.projects].sort((a, b) => b.date.getTime() - a.date.getTime())
+	})
 
 	const getTechColor = (tech: string) => {
 		const colorMap: Record<
@@ -34,9 +39,9 @@
 </script>
 
 <template>
-	<ul v-if="projects.length" class="grid grid-cols-1 gap-6">
+	<ul v-if="sortedProjects.length" class="grid grid-cols-1 gap-6">
 		<UCard
-			v-for="project in projects"
+			v-for="project in sortedProjects"
 			:key="project.id"
 			as="li"
 			variant="subtle"
@@ -54,9 +59,9 @@
 					/>
 
 					<div class="absolute top-3 right-3">
-						<UBadge color="neutral" variant="solid" class="bg-black/50 backdrop-blur-sm">
+						<UBadge color="neutral" variant="solid" class="bg-black/50 text-white backdrop-blur-sm">
 							<ClientOnly>
-								{{ $d(new Date(project.date)) }}
+								{{ $d(project.date, dateOption) }}
 							</ClientOnly>
 						</UBadge>
 					</div>
@@ -66,7 +71,7 @@
 			<template #default>
 				<h3 class="mb-2 text-2xl font-semibold">{{ project.title }}</h3>
 
-				<p class="mb-4 line-clamp-2 text-gray-500">
+				<p class="mb-4 text-gray-500">
 					{{ project.translations[locale] }}
 				</p>
 

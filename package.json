@@ -12,7 +12,8 @@
 		"lint:fix": "eslint --fix .",
 		"prettier": "prettier --write .",
 		"format": "npm-run-all -p lint:fix prettier",
-		"firestore-import": "node ./firebase/index.cjs"
+		"firestore-import": "node ./firebase/index.cjs --mode=import",
+		"firestore-export": "node ./firebase/index.cjs --mode=export"
 	},
 	"dependencies": {
 		"@iconify-json/lucide": "^1.2.30",
@@ -33,6 +34,7 @@
 		"eslint": "^9.22.0",
 		"eslint-plugin-prettier": "^5.2.1",
 		"firestore-export-import": "^1.6.0",
+		"minimist": "^1.2.8",
 		"msw": "^2.7.3",
 		"npm-run-all": "^4.1.5",
 		"prettier": "^3.4.2",

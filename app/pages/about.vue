@@ -25,10 +25,14 @@
 		</div>
 
 		<div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
-			<AboutExperience class="about-section" :experience="about?.experience" />
-			<AboutSkill class="about-section" :skills="about?.skills" />
-			<AboutEducation class="about-section" :education="about?.education" />
-			<AboutSelf class="about-section" :self="about?.self" />
+			<div class="flex flex-col gap-8">
+				<AboutExperience class="about-section" :experience="about?.experience" />
+				<AboutEducation class="about-section" :education="about?.education" />
+			</div>
+			<div class="flex flex-col gap-8">
+				<AboutSkill class="about-section" :skills="about?.skills" />
+				<AboutSelf class="about-section" :self="about?.self" />
+			</div>
 		</div>
 	</UContainer>
 </template>

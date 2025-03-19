@@ -5,7 +5,7 @@ export type Project = {
 	title: string
 	link: string
 	poster: string
-	date: Date
+	date: string
 	technologies: Technologies[]
 	translations: Translation
 }

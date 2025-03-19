@@ -3,14 +3,14 @@ import type { Translation } from './translation'
 export type Experience = {
 	companyName: string
 	positionName: string
-	startDate: Date
-	endDate: null | Date
+	startDate: string
+	endDate: null | string
 	translations: Translation
 }
 
 export type Education = {
-	endDate: Date
-	startDate: Date
+	endDate: string
+	startDate: string
 	title: string
 	translations: Translation
 }

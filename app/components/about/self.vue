@@ -3,7 +3,7 @@
 
 	const { locale } = useI18n()
 
-	const props = withDefaults(defineProps<{ self?: Self }>(), {
+	const props = withDefaults(defineProps<{ self?: Self; loading?: boolean }>(), {
 		self: () => ({
 			translations: {
 				en: '',
@@ -18,11 +18,16 @@
 </script>
 
 <template>
+	<!-- eslint-disable vue/no-v-html -->
 	<section>
 		<h2 class="headline">
 			{{ $t('about.self') }}
 		</h2>
 
-		<div v-html="formattedText"></div>
+		<div v-if="loading">
+			<USkeleton v-for="n in 3" :key="n" class="mb-2 h-4 w-full" />
+		</div>
+
+		<div v-else v-html="formattedText"></div>
 	</section>
 </template>

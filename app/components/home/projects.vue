@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import type { Project } from '~/shared'
 
-	const props = withDefaults(defineProps<{ projects?: Project[] }>(), {
+	const props = withDefaults(defineProps<Partial<{ projects: Project[]; loading: boolean }>>(), {
 		projects: () => [],
 	})
 	const dateOption = { year: 'numeric' }
@@ -9,7 +9,9 @@
 	const { locale } = useI18n()
 
 	const sortedProjects = computed(() => {
-		return [...props.projects].sort((a, b) => b.date.getTime() - a.date.getTime())
+		return [...props.projects].sort(
+			(a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+		)
 	})
 
 	const getTechColor = (tech: string) => {
@@ -39,7 +41,33 @@
 </script>
 
 <template>
-	<ul v-if="sortedProjects.length" class="grid grid-cols-1 gap-6">
+	<ul v-if="props.loading" class="grid grid-cols-1 gap-6">
+		<UCard
+			v-for="n in 3"
+			:key="n"
+			as="li"
+			variant="subtle"
+			class="group overflow-hidden transition-all duration-300 hover:shadow-lg"
+		>
+			<template #header>
+				<div class="relative aspect-video overflow-hidden">
+					<USkeleton class="h-full w-full" />
+				</div>
+			</template>
+
+			<template #default>
+				<USkeleton class="mb-2 h-8 w-3/4" />
+				<USkeleton class="mb-4 h-4 w-full" />
+				<USkeleton class="h-4 w-1/2" />
+			</template>
+
+			<template #footer>
+				<USkeleton class="h-10 w-24" />
+			</template>
+		</UCard>
+	</ul>
+
+	<ul v-else-if="sortedProjects.length" class="grid grid-cols-1 gap-6">
 		<UCard
 			v-for="project in sortedProjects"
 			:key="project.id"
@@ -61,7 +89,7 @@
 					<div class="absolute top-3 right-3">
 						<UBadge color="neutral" variant="solid" class="bg-black/50 text-white backdrop-blur-sm">
 							<ClientOnly>
-								{{ $d(project.date, dateOption) }}
+								{{ $d(new Date(project.date), dateOption) }}
 							</ClientOnly>
 						</UBadge>
 					</div>

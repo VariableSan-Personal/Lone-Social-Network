@@ -1,10 +1,15 @@
 <script setup lang="ts">
-	const { locale } = useI18n()
-	const { getLatestAboutEntry } = useAbout()
+	import type { About } from '~/shared'
 
-	const { data: about } = await useAsyncData('about', () => getLatestAboutEntry(), {
+	const { locale } = useI18n()
+
+	const { data: about, status: aboutStatus } = await useFetch<About>('/api/about', {
 		server: false,
+		lazy: true,
+		key: 'about',
 	})
+
+	const loading = computed(() => aboutStatus.value === 'pending')
 </script>
 
 <template>
@@ -28,12 +33,12 @@
 
 		<div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
 			<div class="flex flex-col gap-8">
-				<AboutExperience class="about-section" :experience="about?.experience" />
-				<AboutEducation class="about-section" :education="about?.education" />
+				<AboutExperience class="about-section" :experience="about?.experience" :loading="loading" />
+				<AboutEducation class="about-section" :education="about?.education" :loading="loading" />
 			</div>
 			<div class="flex flex-col gap-8">
-				<AboutSkill class="about-section" :skills="about?.skills" />
-				<AboutSelf class="about-section" :self="about?.self" />
+				<AboutSkill class="about-section" :skills="about?.skills" :loading="loading" />
+				<AboutSelf class="about-section" :self="about?.self" :loading="loading" />
 			</div>
 		</div>
 	</UContainer>

@@ -122,8 +122,7 @@
 					target="_blank"
 					color="primary"
 					variant="ghost"
-					icon="i-heroicons-arrow-top-right-on-square"
-					icon-right
+					icon="lucide:square-arrow-out-up-right"
 				>
 					{{ $t('portfolio.view-project') }}
 				</UButton>
@@ -134,7 +133,7 @@
 	<UCard v-else class="py-12">
 		<div class="text-center">
 			<div class="mb-4 flex justify-center">
-				<UIcon name="i-heroicons-folder-open" class="text-4xl text-gray-400" />
+				<UIcon name="lucide:folder-open" class="text-4xl text-gray-400" />
 			</div>
 			<h3 class="mb-2 text-lg font-medium">No projects found</h3>
 			<p class="text-sm text-gray-500">Projects will appear here once they are added.</p>

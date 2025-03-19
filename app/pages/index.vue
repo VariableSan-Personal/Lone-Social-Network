@@ -2,13 +2,8 @@
 	const { getLatestHomeEntry } = useHome()
 	const { fetchAllProjects } = useProjects()
 
-	const { data: projects, status: projectsStatus } = await useFirebaseWithCache('projects', () =>
-		fetchAllProjects()
-	)
-
-	const { data: home, status: homeStatus } = await useFirebaseWithCache('home', () =>
-		getLatestHomeEntry()
-	)
+	const { data: projects } = await useFirebaseWithCache('projects', () => fetchAllProjects())
+	const { data: home } = await useFirebaseWithCache('home', () => getLatestHomeEntry())
 </script>
 
 <template>
@@ -22,7 +17,6 @@
 						profileImage: home?.profileImage,
 						email: home?.email,
 						socialLinks: home?.socialLinks,
-						loading: homeStatus === 'pending',
 					}"
 					class="col-span-2"
 				/>
@@ -31,7 +25,7 @@
 					<h2 class="text-2xl font-bold">
 						{{ $t('portfolio.projects') }}
 					</h2>
-					<HomeProjects :projects="projects" :loading="projectsStatus === 'pending'" />
+					<HomeProjects :projects="projects" />
 				</section>
 			</div>
 		</UContainer>

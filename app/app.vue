@@ -37,6 +37,7 @@
 <template>
 	<UApp :locale="locales[locale]">
 		<NuxtLayout>
+			<NuxtLoadingIndicator />
 			<NuxtPage />
 		</NuxtLayout>
 	</UApp>

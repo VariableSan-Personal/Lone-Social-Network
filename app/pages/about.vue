@@ -2,11 +2,7 @@
 	const { locale } = useI18n()
 	const { getLatestAboutEntry } = useAbout()
 
-	const { data: about, status: aboutStatus } = await useFirebaseWithCache('about', () =>
-		getLatestAboutEntry()
-	)
-
-	const loading = computed(() => aboutStatus.value === 'pending')
+	const { data: about } = await useFirebaseWithCache('about', () => getLatestAboutEntry())
 </script>
 
 <template>
@@ -30,12 +26,12 @@
 
 		<div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
 			<div class="flex flex-col gap-8">
-				<AboutExperience class="about-section" :experience="about?.experience" :loading="loading" />
-				<AboutEducation class="about-section" :education="about?.education" :loading="loading" />
+				<AboutExperience class="about-section" :experience="about?.experience" />
+				<AboutEducation class="about-section" :education="about?.education" />
 			</div>
 			<div class="flex flex-col gap-8">
-				<AboutSkill class="about-section" :skills="about?.skills" :loading="loading" />
-				<AboutSelf class="about-section" :self="about?.self" :loading="loading" />
+				<AboutSkill class="about-section" :skills="about?.skills" />
+				<AboutSelf class="about-section" :self="about?.self" />
 			</div>
 		</div>
 	</UContainer>

@@ -1,16 +1,14 @@
 <script setup lang="ts">
-	import type { Home, Project } from '~/shared'
+	const { getLatestHomeEntry } = useHome()
+	const { fetchAllProjects } = useProjects()
 
-	const { data: projects, status: projectsStatus } = await useFetch<Project[]>('/api/projects', {
-		server: false,
-		lazy: true,
-		key: 'projects',
-	})
-	const { data: home, status: homeStatus } = await useFetch<Home>('/api/home', {
-		server: false,
-		lazy: true,
-		key: 'home',
-	})
+	const { data: projects, status: projectsStatus } = await useFirebaseWithCache('projects', () =>
+		fetchAllProjects()
+	)
+
+	const { data: home, status: homeStatus } = await useFirebaseWithCache('home', () =>
+		getLatestHomeEntry()
+	)
 </script>
 
 <template>

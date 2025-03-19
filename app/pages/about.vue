@@ -1,13 +1,10 @@
 <script setup lang="ts">
-	import type { About } from '~/shared'
-
 	const { locale } = useI18n()
+	const { getLatestAboutEntry } = useAbout()
 
-	const { data: about, status: aboutStatus } = await useFetch<About>('/api/about', {
-		server: false,
-		lazy: true,
-		key: 'about',
-	})
+	const { data: about, status: aboutStatus } = await useFirebaseWithCache('about', () =>
+		getLatestAboutEntry()
+	)
 
 	const loading = computed(() => aboutStatus.value === 'pending')
 </script>

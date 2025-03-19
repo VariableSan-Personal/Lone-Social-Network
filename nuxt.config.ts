@@ -5,6 +5,7 @@ export default defineNuxtConfig({
 	app: {
 		head: {
 			link: [{ rel: 'icon', type: 'image/png', href: 'pwa-512x512.png' }],
+			title: 'Lone Social',
 		},
 	},
 
@@ -43,8 +44,8 @@ export default defineNuxtConfig({
 				target: 'esnext',
 			},
 		},
-		prerender: {
-			routes: ['/', '/about'],
+		routeRules: {
+			'*': { swr: 5 * 60 },
 		},
 	},
 

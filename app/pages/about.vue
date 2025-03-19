@@ -2,7 +2,9 @@
 	const { locale } = useI18n()
 	const { getLatestAboutEntry } = useAbout()
 
-	const { data: about } = await useAsyncData('about', () => getLatestAboutEntry())
+	const { data: about } = await useAsyncData('about', () => getLatestAboutEntry(), {
+		server: false,
+	})
 </script>
 
 <template>

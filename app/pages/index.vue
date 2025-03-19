@@ -2,8 +2,10 @@
 	const { fetchAllProjects } = useProjects()
 	const { getLatestHomeEntry } = useHome()
 
-	const { data: projects } = await useAsyncData('projects', () => fetchAllProjects())
-	const { data: home } = await useAsyncData('home', () => getLatestHomeEntry())
+	const { data: projects } = await useAsyncData('projects', () => fetchAllProjects(), {
+		server: false,
+	})
+	const { data: home } = await useAsyncData('home', () => getLatestHomeEntry(), { server: false })
 </script>
 
 <template>

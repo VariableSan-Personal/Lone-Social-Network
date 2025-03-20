@@ -1,11 +1,29 @@
 import { fileURLToPath, URL } from 'node:url'
 
+const meta = {
+	title: 'Lone Social',
+	description:
+		"Portfolio of a passionate software developer showcasing projects, skills, and creative solutions. Explore my work and let's build something great together.",
+	thumbnail:
+		'https://firebasestorage.googleapis.com/v0/b/girls-in-armor.appspot.com/o/lone-social%2FLinkedIn%20Banner.png?alt=media',
+}
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 	app: {
 		head: {
 			link: [{ rel: 'icon', type: 'image/png', href: 'pwa-512x512.png' }],
-			title: 'Lone Social',
+			title: meta.title,
+			meta: [
+				{ key: 'description', name: 'description', content: meta.description },
+				{ key: 'og:title', property: 'og:title', content: meta.title },
+				{ key: 'og:description', property: 'og:description', content: meta.description },
+				{ key: 'og:image', property: 'og:image', content: meta.thumbnail },
+				{ key: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
+				{ key: 'twitter:title', name: 'twitter:title', content: meta.title },
+				{ key: 'twitter:description', name: 'twitter:description', content: meta.description },
+				{ key: 'twitter:image', name: 'twitter:image', content: meta.thumbnail },
+			],
 		},
 	},
 
@@ -24,6 +42,7 @@ export default defineNuxtConfig({
 		'@vueuse/nuxt',
 		'@crazydos/nuxt-msw',
 		'nuxt-vuefire',
+		'nuxt-easy-lightbox',
 	],
 
 	runtimeConfig: {

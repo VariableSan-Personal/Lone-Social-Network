@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import type { Project } from '~/shared'
 
-	const props = withDefaults(defineProps<Partial<{ projects: Project[]; loading: boolean }>>(), {
+	const props = withDefaults(defineProps<Partial<{ projects: Project[] }>>(), {
 		projects: () => [],
 	})
 	const dateOption = { year: 'numeric' }
@@ -56,115 +56,87 @@
 <template>
 	<div>
 		<ul class="grid grid-cols-1 gap-8">
-			<template v-if="loading">
-				<UCard
-					v-for="n in 3"
-					:key="n"
-					as="li"
-					variant="subtle"
-					class="overflow-hidden transition-all duration-300 hover:shadow-lg"
-				>
-					<template #header>
-						<div class="relative aspect-video overflow-hidden">
-							<USkeleton class="h-full w-full" />
-						</div>
-					</template>
+			<UCard
+				v-for="project in sortedProjects"
+				:key="project.id"
+				as="li"
+				variant="subtle"
+				:ui="{
+					header: 'p-0!',
+				}"
+				class="overflow-hidden transition-all duration-300 hover:shadow-lg"
+			>
+				<template #header>
+					<div class="relative aspect-video overflow-hidden">
+						<img
+							:src="project.poster || 'img/not found.jpg'"
+							:alt="project.title"
+							class="h-full w-full cursor-pointer object-contain transition-transform duration-500"
+							@click="showImg(project.poster || 'img/not found.jpg')"
+						/>
 
-					<template #default>
-						<USkeleton class="mb-2 h-8 w-3/4" />
-						<USkeleton class="mb-4 h-4 w-full" />
-						<USkeleton class="h-4 w-1/2" />
-					</template>
-
-					<template #footer>
-						<USkeleton class="h-10 w-24" />
-					</template>
-				</UCard>
-			</template>
-
-			<template v-else-if="sortedProjects.length">
-				<UCard
-					v-for="project in sortedProjects"
-					:key="project.id"
-					as="li"
-					variant="subtle"
-					:ui="{
-						header: 'p-0!',
-					}"
-					class="overflow-hidden transition-all duration-300 hover:shadow-lg"
-				>
-					<template #header>
-						<div class="relative aspect-video overflow-hidden">
-							<img
-								:src="project.poster || 'img/not found.jpg'"
-								:alt="project.title"
-								class="h-full w-full cursor-pointer object-contain transition-transform duration-500"
-								@click="showImg(project.poster || 'img/not found.jpg')"
-							/>
-
-							<div class="absolute top-3 right-3">
-								<UBadge
-									color="neutral"
-									variant="solid"
-									class="bg-black/50 text-white backdrop-blur-sm"
-								>
-									<ClientOnly>
-										{{ $d(new Date(project.date), dateOption) }}
-									</ClientOnly>
-								</UBadge>
-							</div>
-						</div>
-					</template>
-
-					<template #default>
-						<h3 class="mb-2 text-2xl font-semibold">{{ project.title }}</h3>
-
-						<p class="mb-4 text-gray-500">
-							{{ project.translations[locale] }}
-						</p>
-
-						<div class="flex flex-wrap gap-2">
+						<div class="absolute top-3 right-3">
 							<UBadge
-								v-for="tech in project.technologies"
-								:key="tech"
-								:color="getTechColor(tech)"
-								variant="soft"
-								class="font-medium"
+								color="neutral"
+								variant="solid"
+								class="bg-black/50 text-white backdrop-blur-sm"
 							>
-								{{ tech }}
+								<ClientOnly>
+									{{ $d(new Date(project.date), dateOption) }}
+								</ClientOnly>
 							</UBadge>
 						</div>
-					</template>
+					</div>
+				</template>
 
-					<template #footer>
-						<div class="flex flex-wrap gap-2">
-							<UButton
-								v-if="project.link"
-								:to="project.link"
-								target="_blank"
-								color="primary"
-								variant="ghost"
-								icon="lucide:square-arrow-out-up-right"
-							>
-								{{ $t('portfolio.view-project') }}
-							</UButton>
+				<template #default>
+					<h3 class="mb-2 text-2xl font-semibold">{{ project.title }}</h3>
 
-							<UButton
-								v-if="project.githubLink"
-								:to="project.githubLink"
-								target="_blank"
-								color="primary"
-								variant="ghost"
-								icon="lucide:github"
-							>
-								{{ $t('portfolio.github') }}
-							</UButton>
-						</div>
-					</template>
-				</UCard>
-			</template>
+					<p class="mb-4 text-gray-500">
+						{{ project.translations[locale] }}
+					</p>
 
-			<UCard v-else class="py-12">
+					<div class="flex flex-wrap gap-2">
+						<UBadge
+							v-for="tech in project.technologies"
+							:key="tech"
+							:color="getTechColor(tech)"
+							variant="soft"
+							class="font-medium"
+						>
+							{{ tech }}
+						</UBadge>
+					</div>
+				</template>
+
+				<template #footer>
+					<div class="flex flex-wrap gap-2">
+						<UButton
+							v-if="project.link"
+							:to="project.link"
+							target="_blank"
+							color="primary"
+							variant="ghost"
+							icon="lucide:square-arrow-out-up-right"
+						>
+							{{ $t('portfolio.view-project') }}
+						</UButton>
+
+						<UButton
+							v-if="project.githubLink"
+							:to="project.githubLink"
+							target="_blank"
+							color="primary"
+							variant="ghost"
+							icon="lucide:github"
+						>
+							{{ $t('portfolio.github') }}
+						</UButton>
+					</div>
+				</template>
+			</UCard>
+
+			<UCard v-if="!projects.length" class="py-12">
 				<div class="text-center">
 					<div class="mb-4 flex justify-center">
 						<UIcon name="lucide:folder-open" class="text-4xl text-gray-400" />

@@ -43,16 +43,14 @@
 				/>
 
 				<section class="col-span-10 space-y-6">
-					<ClientOnly>
-						<UTabs
-							v-model="activeTab"
-							:content="false"
-							:items="items"
-							variant="link"
-							class="w-full"
-							:ui="{ trigger: 'flex-1' }"
-						/>
-					</ClientOnly>
+					<UTabs
+						v-model="activeTab"
+						:content="false"
+						:items="items"
+						variant="link"
+						class="w-full"
+						:ui="{ trigger: 'flex-1' }"
+					/>
 
 					<HomeProjects :projects="filteredProjects[Number(activeTab)]" />
 				</section>

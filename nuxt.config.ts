@@ -63,9 +63,6 @@ export default defineNuxtConfig({
 				target: 'esnext',
 			},
 		},
-		routeRules: {
-			'*': { swr: 5 * 60 },
-		},
 	},
 
 	compatibilityDate: '2024-11-27',

@@ -15,8 +15,10 @@
 			<li v-for="(link, index) in LINKS" :key="index">
 				<NuxtLink
 					tabindex="-1"
-					class="duration block rounded-lg p-2 transition-colors hover:bg-gray-200 hover:font-bold hover:text-black dark:text-gray-100 dark:hover:bg-gray-300"
+					class="duration block rounded-lg p-2 transition-colors"
+					exact-active-class="bg-gray-300 font-bold text-black"
 					:to="{ name: link.name }"
+					@click="drawer = false"
 				>
 					{{ t(link.title) }}
 				</NuxtLink>

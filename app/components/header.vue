@@ -24,7 +24,7 @@
 						<Icon name="lucide:align-justify" />
 					</UButton>
 
-					<NuxtLink :to="{ name: 'index' }">
+					<NuxtLink class="flex items-center" :to="{ name: 'index' }">
 						<Icon
 							class="text-3xl transition hover:opacity-60 sm:text-4xl"
 							name="custom:lone-social-logo"

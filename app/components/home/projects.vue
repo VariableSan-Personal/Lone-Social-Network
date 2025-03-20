@@ -9,15 +9,13 @@
 	const { locale } = useI18n()
 
 	const visibleRef = ref(false)
-	const indexRef = ref(0)
+	const imgs = ref<string[]>([])
 
 	const sortedProjects = computed(() => {
 		return [...props.projects].sort(
 			(a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
 		)
 	})
-
-	const imgs = computed(() => sortedProjects.value.map((el) => el.poster))
 
 	const getTechColor = (tech: string) => {
 		const colorMap: Record<
@@ -46,8 +44,8 @@
 		return colorMap[tech as keyof typeof colorMap] || 'neutral'
 	}
 
-	const showImg = (index: number) => {
-		indexRef.value = index
+	const showImg = (poster: string) => {
+		imgs.value = [poster]
 		visibleRef.value = true
 	}
 	const onHide = () => {
@@ -86,7 +84,7 @@
 
 			<template v-else-if="sortedProjects.length">
 				<UCard
-					v-for="(project, index) in sortedProjects"
+					v-for="project in sortedProjects"
 					:key="project.id"
 					as="li"
 					variant="subtle"
@@ -101,7 +99,7 @@
 								:src="project.poster || 'img/not found.jpg'"
 								:alt="project.title"
 								class="h-full w-full cursor-pointer object-contain transition-transform duration-500"
-								@click="showImg(index)"
+								@click="showImg(project.poster || 'img/not found.jpg')"
 							/>
 
 							<div class="absolute top-3 right-3">
@@ -177,6 +175,6 @@
 			</UCard>
 		</ul>
 
-		<VueEasyLightbox :visible="visibleRef" :imgs="imgs" :index="indexRef" @hide="onHide" />
+		<VueEasyLightbox :visible="visibleRef" :imgs="imgs" :index="0" @hide="onHide" />
 	</div>
 </template>

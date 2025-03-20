@@ -1,35 +1,38 @@
 {
-  "about": {
-    "fullname": "Nursultan Nurgaliyev",
-    "experience": "Experience",
-    "education": "Education",
-    "skills": "Skills",
-    "technology-stack": "Technology Stack",
-    "self": "About me"
-  },
-  "errors": {
-    "not-exist": "Page does not exist",
-    "something-went-wrong": "Something went wrong",
-    "return-home": "Return to the home page"
-  },
-  "home": {
-    "banner": {
-      "title": "Software Developer",
-      "subtitle": "I build modern web applications using Nuxt 3, Node.js, Go and other cutting-edge technologies. Transforming complex ideas into intuitive, user-friendly interfaces."
-    }
-  },
-  "portfolio": {
-    "projects": "Projects",
-    "view-project": "View Project"
-  },
-  "nav-links": {
-    "home": "Home",
-    "about": "About"
-  },
-  "experience": {
-    "present": "Present",
-    "year": "{years} yr",
-    "month": "{months} mos",
-    "lessThanMonth": "less than month"
-  }
+	"about": {
+		"fullname": "Nursultan Nurgaliyev",
+		"experience": "Experience",
+		"education": "Education",
+		"skills": "Skills",
+		"technology-stack": "Technology Stack",
+		"self": "About me"
+	},
+	"errors": {
+		"not-exist": "Page does not exist",
+		"something-went-wrong": "Something went wrong",
+		"return-home": "Return to the home page"
+	},
+	"home": {
+		"banner": {
+			"title": "Software Developer",
+			"subtitle": "I build modern web applications using Nuxt 3, Node.js, Go and other cutting-edge technologies. Transforming complex ideas into intuitive, user-friendly interfaces."
+		},
+		"involvement": "Projects Involvement",
+		"personal": "Personal Projects"
+	},
+	"portfolio": {
+		"projects": "Projects",
+		"view-project": "View Project",
+		"github": "Github"
+	},
+	"nav-links": {
+		"home": "Home",
+		"about": "About"
+	},
+	"experience": {
+		"present": "Present",
+		"year": "{years} yr",
+		"month": "{months} mos",
+		"lessThanMonth": "less than month"
+	}
 }

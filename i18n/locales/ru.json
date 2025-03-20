@@ -1,35 +1,38 @@
 {
-	"about": {
-		"fullname": "Нургалиев Нурсултан",
-		"education": "Образование",
-		"experience": "Опыт",
-		"self": "Обо мне",
-		"skills": "Навыки",
-		"technology-stack": "Технологический стек"
-	},
-	"errors": {
-		"not-exist": "Страница не существует",
-		"return-home": "Вернуться на домашнюю страницу",
-		"something-went-wrong": "Что-то пошло не так"
-	},
-	"home": {
-		"banner": {
-			"title": "Software Developer",
-			"subtitle": "Создаю современные веб-приложения с использованием Nuxt 3, Node.js, Go и других технологий. Превращаю сложные идеи в интуитивно понятные интерфейсы."
-		}
-	},
-	"portfolio": {
-		"projects": "Проекты",
-		"view-project": "Посмотреть проект"
-	},
-	"nav-links": {
-		"about": "Обо мне",
-		"home": "Главная"
-	},
-	"experience": {
-		"lessThanMonth": "Менее месяца",
-		"month": "{months} мес",
-		"present": "Настоящее время",
-		"year": "{years} год"
-	}
+  "about": {
+    "fullname": "Нургалиев Нурсултан",
+    "education": "Образование",
+    "experience": "Опыт",
+    "self": "Обо мне",
+    "skills": "Навыки",
+    "technology-stack": "Технологический стек"
+  },
+  "errors": {
+    "not-exist": "Страница не существует",
+    "return-home": "Вернуться на домашнюю страницу",
+    "something-went-wrong": "Что-то пошло не так"
+  },
+  "home": {
+    "banner": {
+      "title": "Software Developer",
+      "subtitle": "Создаю современные веб-приложения с использованием Nuxt 3, Node.js, Go и других технологий. Превращаю сложные идеи в интуитивно понятные интерфейсы."
+    },
+    "involvement": "Участие в проектах",
+    "personal": "Личные проекты"
+  },
+  "portfolio": {
+    "projects": "Проекты",
+    "view-project": "Посмотреть проект",
+    "github": "GitHub"
+  },
+  "nav-links": {
+    "about": "Обо мне",
+    "home": "Главная"
+  },
+  "experience": {
+    "lessThanMonth": "Менее месяца",
+    "month": "{months} мес",
+    "present": "Настоящее время",
+    "year": "{years} год"
+  }
 }

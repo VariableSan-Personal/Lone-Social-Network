@@ -13,7 +13,7 @@
 
 <template>
 	<div
-		class="wrapper top-52 left-0 h-max transform rounded-md p-4 drop-shadow-xl lg:sticky lg:-translate-y-12 lg:transform-none lg:p-0"
+		class="wrapper top-52 left-0 h-max transform rounded-md p-4 drop-shadow-xl lg:sticky lg:transform-none lg:p-0"
 	>
 		<div
 			class="image-cover relative mx-auto h-36 w-36 transform overflow-hidden rounded-full border-5 lg:-mb-20 lg:-translate-y-20"

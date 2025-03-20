@@ -6,6 +6,8 @@ export type Project = {
 	link: string
 	poster: string
 	date: string
+	type: 'commercial' | 'personal'
+	githubLink: string
 	technologies: Technologies[]
 	translations: Translation
 }
@@ -26,3 +28,5 @@ export type Technologies =
 	| 'Next'
 	| 'Nuxt'
 	| 'Node.js'
+	| 'Nest.js'
+	| 'Express.js'

@@ -1,31 +1,60 @@
 <script setup lang="ts">
+	import type { TabsItem } from '@nuxt/ui'
+
 	const { getLatestHomeEntry } = useHome()
 	const { fetchAllProjects } = useProjects()
+	const { t } = useI18n()
 
 	const { data: projects } = await useFirebaseWithCache('projects', () => fetchAllProjects())
 	const { data: home } = await useFirebaseWithCache('home', () => getLatestHomeEntry())
+
+	const activeTab = ref('0')
+
+	const filteredProjects = computed(() => [
+		projects.value.filter((project) => project.type === 'commercial'),
+		projects.value.filter((project) => project.type === 'personal'),
+	])
+
+	const items: TabsItem[] = [
+		{
+			label: t('home.involvement'),
+			icon: 'lucide:user',
+		},
+		{
+			label: t('home.personal'),
+			icon: 'lucide:lock',
+		},
+	]
 </script>
 
 <template>
-	<div class="space-y-2 lg:space-y-12">
+	<div class="space-y-2 lg:space-y-8">
 		<HomeHero />
 
 		<UContainer>
-			<div class="relative flex grid-cols-12 flex-col gap-4 lg:grid">
+			<div class="relative flex grid-cols-12 flex-col gap-8 lg:grid">
 				<HomeProfileAside
 					v-bind="{
 						profileImage: home?.profileImage,
 						email: home?.email,
 						socialLinks: home?.socialLinks,
 					}"
-					class="col-span-2"
+					class="col-span-2 lg:-translate-y-8"
 				/>
 
-				<section class="col-span-10 space-y-4">
-					<h2 class="text-2xl font-bold">
-						{{ $t('portfolio.projects') }}
-					</h2>
-					<HomeProjects :projects="projects" />
+				<section class="col-span-10 space-y-6">
+					<ClientOnly>
+						<UTabs
+							v-model="activeTab"
+							:content="false"
+							:items="items"
+							variant="link"
+							class="w-full"
+							:ui="{ trigger: 'flex-1' }"
+						/>
+					</ClientOnly>
+
+					<HomeProjects :projects="filteredProjects[Number(activeTab)]" />
 				</section>
 			</div>
 		</UContainer>

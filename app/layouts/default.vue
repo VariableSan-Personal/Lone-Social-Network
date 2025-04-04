@@ -1,8 +1,9 @@
 <script setup lang="ts"></script>
 
 <template>
-	<div class="relative flex min-h-screen w-full flex-col pt-14 pb-10">
+	<div class="relative flex min-h-screen w-full flex-col pb-10">
 		<Header />
+		<div class="h-[52px]"></div>
 
 		<Drawer />
 

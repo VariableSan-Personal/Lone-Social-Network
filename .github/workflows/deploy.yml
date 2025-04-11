@@ -1,4 +1,4 @@
-name: Deploy Application
+name: Build and Deploy Nuxt Application
 
 on:
   push:
@@ -9,18 +9,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Cloning a repository
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.7.0
-        with:
-          ssh-private-key: ${{ secrets.SERVER_KEY }}
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v2
 
-      - name: Add host key
+      - name: Build Docker Image (Production)
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          target: prod
+          tags: lone-social:latest
+          load: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Save Docker Image to Archive
         run: |
-          mkdir -p ~/.ssh
-          ssh-keyscan ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+          docker save lone-social | gzip > lone-social.tar.gz
 
       - name: Create .env file
         run: |
@@ -33,25 +40,28 @@ jobs:
           echo "FIREBASE_MESSAGINGSENDERID=${{ secrets.FIREBASE_MESSAGINGSENDERID }}" >> .env
           echo "FIREBASE_APPID=${{ secrets.FIREBASE_APPID }}" >> .env
 
-      - name: Copying files to the server
-        run: |
-          rsync -avz --delete -e "ssh -i ~/.ssh/id_rsa" . ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.SERVER_PATH }}
+      - name: Set up SSH Agent
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.SERVER_KEY }}
 
-      - name: Move .env file to the server
+      - name: Add Server to Known Hosts
         run: |
-          scp -i ~/.ssh/id_rsa .env ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.SERVER_PATH }}/.env
+          mkdir -p ~/.ssh
+          ssh-keyscan ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Build and restart containers
+      - name: Copy Files to VPS
         run: |
-          ssh -i ~/.ssh/id_rsa ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
+          rsync -avz -e "ssh" lone-social.tar.gz docker-compose.yml .env ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.SERVER_PATH }}
+
+      - name: Deploy on VPS
+        run: |
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
             cd ${{ secrets.SERVER_PATH }}
-            docker compose down
-            docker compose up --build -d
+            docker load < lone-social.tar.gz
+            docker compose down || true
+            docker compose up -d
+            docker container prune -f
+            docker image prune -f --filter "dangling=true"
+            rm lone-social.tar.gz
           EOF
-
-      - name: Cleanup
-        run: |
-          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
-            docker container prune -f &&
-            docker image prune -f --filter 'dangling=true'
-          "

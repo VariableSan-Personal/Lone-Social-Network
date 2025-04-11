@@ -28,6 +28,7 @@ export default defineNuxtConfig({
 	},
 
 	devtools: { enabled: false },
+	sourcemap: false,
 
 	alias: {
 		'@': fileURLToPath(new URL('./', import.meta.url)),

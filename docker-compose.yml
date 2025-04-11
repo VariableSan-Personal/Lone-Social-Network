@@ -1,16 +1,7 @@
-version: '3.8'
-
-networks:
-  web-network:
-    driver: bridge
-
 services:
   frontend:
     restart: always
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: prod
+    image: lone-social:latest
     deploy:
       restart_policy:
         condition: on-failure
@@ -21,15 +12,9 @@ services:
           memory: 512M
     env_file:
       - .env
-    logging:
-      driver: 'json-file'
-      options:
-        max-size: '50m'
-        max-file: '3'
     ports:
       - '3001:3001'
-    networks:
-      - web-network
     environment:
       - NODE_ENV=production
       - PORT=3001
+      - NODE_OPTIONS=--max-old-space-size=4096

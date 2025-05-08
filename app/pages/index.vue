@@ -15,7 +15,7 @@
 		projects.value.filter((project) => project.type === 'personal'),
 	])
 
-	const items: TabsItem[] = [
+	const items: TabsItem[] = computed(() => [
 		{
 			label: t('home.involvement'),
 			icon: 'lucide:user',
@@ -24,7 +24,7 @@
 			label: t('home.personal'),
 			icon: 'lucide:lock',
 		},
-	]
+	])
 </script>
 
 <template>
